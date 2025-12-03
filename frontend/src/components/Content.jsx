@@ -38,7 +38,7 @@ export function Content({ pageData = {} }) {
           </ul>
         )}
         {title && (
-          <h1 className="font-bold text-4xl sm:text-6xl lg:text-9xl">
+          <h1 className="text-4xl sm:text-6xl lg:text-9xl text-primary">
             {title}
           </h1>
         )}

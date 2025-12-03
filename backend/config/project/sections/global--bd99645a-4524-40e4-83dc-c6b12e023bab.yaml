@@ -7,7 +7,7 @@ maxAuthors: 1
 name: Global
 propagationMethod: all
 siteSettings:
-  58ccb571-6c72-449f-8e7b-6f43c5d416b3: # Next Starter
+  58ccb571-6c72-449f-8e7b-6f43c5d416b3: # Hartcopy
     enabledByDefault: true
     hasUrls: false
     template: null

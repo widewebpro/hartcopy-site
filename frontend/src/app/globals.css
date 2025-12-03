@@ -6,6 +6,12 @@
 @source "../../../backend/templates";
 @source "./safelist.txt";
 
+@import "../../public/fonts/fonts.css";
+
+@import "../styles/style.css";
+
+@import "../styles/base/text.css";
+
 
 @layer base {
   :focus-visible {

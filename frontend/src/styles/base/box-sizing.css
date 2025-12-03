@@ -1,0 +1,15 @@
+html {
+  box-sizing: border-box;
+}
+
+body {line-height: 1;}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}

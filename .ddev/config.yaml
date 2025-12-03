@@ -1,4 +1,4 @@
-name: starter-next
+name: hartcopy
 type: craftcms
 docroot: backend/web
 php_version: "8.2"
@@ -7,7 +7,7 @@ webserver_type: nginx-fpm
 composer_root: backend
 xdebug_enabled: false
 additional_hostnames:
-  - api.starter-next
+  - api.hartcopy
 database:
     type: mysql
     version: "8.0"
@@ -22,7 +22,7 @@ web_extra_exposed_ports:
     http_port: 3000
     https_port: 3001
 web_environment:
-  - VIRTUAL_HOST=starter-next.ddev.site,api.starter-next.ddev.site
+  - VIRTUAL_HOST=hartcopy.ddev.site,api.hartcopy.ddev.site
   - CRAFT_CMD_ROOT=/var/www/html/backend
 
 # Key features of DDEV's config.yaml:
