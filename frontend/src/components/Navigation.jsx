@@ -2,8 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useSiteStore } from '@/store/useSiteStore'
 
-export default function Navigation({ pages = [] }) {
+export default function Navigation() {
+    const { pages } = useSiteStore()
   const pathname = usePathname()
   
   const isActiveOrChild = (page) => {
@@ -17,15 +19,15 @@ export default function Navigation({ pages = [] }) {
       const isActive = isActiveOrChild(page)
       
       return (
-        <li key={page.id} role="none" className="relative">
+        <li key={page.id} role="none" className="relative mb-80 last:mb-0 md:mb-0 md:mr-24 md:last:mr-0">
           <Link 
-            href={`/${page.uri}`}
+            href={`${page.url}`}
             role="menuitem"
             tabIndex={0}
-            className={`block p-2 hover:underline outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 ${
-              pathname === `/${page.uri}` ? 'text-black' : 'text-red-600 hover:text-red-600'
+            className={`text-[20px] md:text-[8px] outline-none hover:text-red uppercase transition-color duration-300 ${
+              pathname === `${page.url}` ? 'text-red italic' : 'text-black'
             }`}
-            aria-current={pathname === `/${page.uri}` ? 'page' : undefined}
+            aria-current={pathname === `/${page.url}` ? 'page' : undefined}
           >
             {page.title}
           </Link>
@@ -41,33 +43,7 @@ export default function Navigation({ pages = [] }) {
   
   return (
     <nav className="sm:basis-2/3 grow-1 relative z-10" aria-label="Primary">
-      <ul className="sm:flex" role="menubar">
-        <li role="none" className="relative">
-          <Link 
-            href="/blog" 
-            role="menuitem"
-            tabIndex={0}
-            className={`block p-2 hover:underline outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 ${
-              pathname === '/blog' ? 'text-black' : 'text-red-600 hover:text-red-600'
-            }`}
-            aria-current={pathname === '/blog' ? 'page' : undefined}
-          >
-            Blog
-          </Link>
-        </li>
-        <li role="none" className="relative">
-          <Link 
-            href="/guestbook" 
-            role="menuitem"
-            tabIndex={0}
-            className={`block p-2 outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 ${
-              pathname === '/guestbook' ? 'text-black' : 'text-red-600 hover:text-red-600 hover:underline'
-            }`}
-            aria-current={pathname === '/guestbook' ? 'page' : undefined}
-          >
-            Guestbook
-          </Link>
-        </li>
+      <ul className="flex flex-col md:flex-row items-center pt-[18vh] md:pt-0" role="menubar">
         {renderPageLinks(pages)}
       </ul>
     </nav>

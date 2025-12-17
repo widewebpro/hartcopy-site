@@ -1,4 +1,7 @@
-@import "./base/reset.css";
+@import "./base/fonts.css";
 @import "./base/box-sizing.css";
 @import "./base/text.css";
-@import "./theme.css"
+@import "./base/container.css";
+@import "./base/grid.css";
+@import "./base/globals.css";
+@import "./theme.css";

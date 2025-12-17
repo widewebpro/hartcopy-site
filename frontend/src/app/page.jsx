@@ -1,19 +1,18 @@
-import { createPage } from '../lib/createPage'
-import { HOME_QUERY } from '../queries/home'
 
 export const dynamic = 'force-static'
 export const revalidate = 3600
-
-const transform = (data) => {
-  if (!data?.entries?.[0]) return null
+import Sidebar from '@/components/Sidebar'
+import MainSection from '@/components/MainSection'
+import Header from '@/components/Header'
+export default function Page() {
+  return (
+    <div className='container md:flex'>
+       <div className="md:hidden w-[calc(100%-24px)] fixed top-12 left-12 right-12 z-50">
+            <Header />
+        </div>
+      <Sidebar />
+      <MainSection />
+    </div>
+  )
   
-  const entry = data.entries[0]
-  return {
-    title: entry.title || '',
-    pageSubheading: entry.pageSubheading || '',
-    pageContent: entry.pageContent || '',
-    image: entry.image || [],
-  }
 }
-
-export default createPage(HOME_QUERY, transform, null)

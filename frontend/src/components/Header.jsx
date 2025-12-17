@@ -1,16 +1,44 @@
+'use client'
 import Navigation from './Navigation'
 import Logo from './Logo'
+import { useState } from 'react';
+import BackButton from './BackButton';
+export default function Header() {
+  const [open, setOpen] = useState(false);
 
-export default function Header({ siteName, logo, pages }) {
   return (
-    <header className="navigation pt-6 pb-5 px-2 bg-slate-50">
-      <div className="sm:flex justify-between container items-start mx-auto">
-        <div className="logo sm:basis-1/3 font-bold p-1">
-          <Logo siteName={siteName} logo={logo} />
+    <header className="navigation bg-white">
+      <div>
+        <div className="md:mb-24 px-20 md:px-0 py-18 md:py-0 flex items-center justify-between">
+          <Logo />
+          <button
+            className="md:hidden flex flex-col"
+            onClick={() => setOpen(!open)}
+            aria-label="Open menu"
+          >
+            {open ? (<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.1213 12.1213L7.12134 7.12134M7.12134 7.12134L2.12134 2.12134M7.12134 7.12134L12.1213 2.12134M7.12134 7.12134L2.12134 12.1213" stroke="#E62B25" stroke-width="3" stroke-linecap="square" stroke-linejoin="round" />
+            </svg>)
+              :
+              (<svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 13.5H14M0 7.5H14M0 1.5H14" stroke="#E62B25" stroke-width="3" stroke-linejoin="round" />
+              </svg>)
+            }
+          </button>
+          <div className='hidden md:block'>
+            <BackButton/>
+          </div>
         </div>
-        <div>
-          <Navigation pages={pages} />
+        <div className='hidden md:block'>
+          <Navigation />
         </div>
+        {open && (
+          <div className="md:hidden w-full h-full fixed top-63 left-0 right-0 bottom-0 z-40 bg-light-grey">
+            <div className="w-full h-full pt-20 px-6 pb-6 animate-slide-down">
+              <Navigation />
+            </div>
+          </div>
+        )}
       </div>
     </header>
   )

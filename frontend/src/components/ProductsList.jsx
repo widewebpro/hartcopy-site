@@ -1,0 +1,67 @@
+'use client'
+import { useProductsStore } from "@/store/useProductStore"
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+
+import Link from "next/link";
+
+export default function ProductsList() {
+    const pathname = usePathname();
+    const isBookmarksPage = pathname === "/bookmarks";
+    const favorites = useProductsStore(s => s.favorites);
+
+    const searchTerm = useProductsStore((state) => state.searchTerm)
+    const products = useProductsStore((state) => state.products)
+    const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover, hoveredIndexGrid } = useProductsStore();
+    const refs = useRef([]);
+
+    const getFilteredProducts = useProductsStore(
+        (state) => state.getFilteredProducts
+    )
+    useEffect(() => {
+        if (hoveredIndexGrid !== null) {
+            refs.current[hoveredIndexGrid]?.scrollIntoView({
+                block: "center",
+                behavior: "smooth",
+            });
+        }
+    }, [hoveredIndexGrid]);
+
+    const baseProducts = isBookmarksPage
+        ? products.filter(p => favorites.includes(p.id))
+        : products;
+    const filteredProducts = baseProducts.filter(p =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return (
+        <ul className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
+            {filteredProducts.length > 0 ? (
+                filteredProducts.map((p, i) => {
+                    const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
+
+                    return (
+                        <li
+                            ref={el => (refs.current[i] = el)}
+                            key={i}
+                            className={`text-[8px] text-black mb-9 last:mb-0 transition-opacity duration-200 ${isDimmed ? "md:opacity-25" : "md:opacity-100"
+                                }`}
+                            onMouseEnter={() => { setHoveredIndex(i), setHoverWithDelay("list", i) }}
+                            onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}
+                        >
+                            <Link href={`/products/${p.slug}`}>
+                                <div className="flex">
+                                    <span className="w-29">{i + 1}</span>
+                                    <span>{p.name}</span>
+                                </div>
+                            </Link>
+
+                        </li>
+                    );
+                })
+            ) : (
+                <li className="text-gray-500">No products found</li>
+            )}
+        </ul>
+
+    )
+}

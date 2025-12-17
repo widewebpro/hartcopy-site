@@ -1,15 +1,13 @@
 import { GLOBALS_QUERY } from '../queries/globals'
 import { fetchGraphQL } from '../lib/graphql'
-import { FlashProvider } from '../lib/flashes'
-import { Alert } from '../components/Alert'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import "./globals.css"
 import { SkipLink } from '../components/SkipLink'
-
+import { SiteDataInitializer } from '@/components/store-inits/SiteDataInitializer'
+import { ProductsInitializer } from '@/components/store-inits/ProductInitializer'
+import { products } from '@/helpers/products'
 export const metadata = {
   title: process.env.SITE_NAME,
-  description: 'A minimal, production-ready starter for Next.js 15 and Craft CMS'
+  description: 'Hartcopy site'
 }
 
 export default async function RootLayout({ children }) {
@@ -18,9 +16,36 @@ export default async function RootLayout({ children }) {
     next: { revalidate: 3600 }
   })
 
-  const globals = data?.globalEntries?.[0] || {}
-  const pages = data?.pagesEntries || []
-  const siteName = process.env.SITE_NAME || ''
+
+  const globals = data?.globalEntries?.[0] || {
+    
+  }
+  const pages = [
+    {
+      id: 1,
+      url: '/',
+      title: 'Index'
+    },
+    {
+      id: 2,
+      url: '/stories',
+      title: 'Stories'
+    },
+    {
+      id: 3,
+      url: '/shop',
+      title: 'Shop'
+    },
+    {
+      id: 4,
+      url: '/bookmarks',
+      title: 'Bookmarks'
+    }
+  ]
+  const siteName = process.env.SITE_NAME || 'Hartcopy'
+  const logo = globals?.logo?.[0] || {
+      url: '/logo.svg'
+    }
 
   return (
     <html lang="en">
@@ -29,16 +54,18 @@ export default async function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
+      <body className='bg-light-grey'>
+        <SiteDataInitializer data={{
+          siteName,
+          logo,
+          pages
+        }} />
+
+        <ProductsInitializer products={products} />
         <SkipLink />
-        <Header siteName={siteName} logo={globals?.logo?.[0]} pages={pages} />
         <main id="main" className="min-h-screen">
-          <FlashProvider>
-            <Alert />
             {children}
-          </FlashProvider>
         </main>
-        <Footer address={globals?.address?.[0] || globals?.address} />
       </body>
     </html>
   )

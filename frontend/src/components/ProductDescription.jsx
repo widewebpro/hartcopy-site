@@ -1,0 +1,98 @@
+'use client'
+
+import { useProductsStore } from "@/store/useProductStore"
+import Link from "next/link";
+export default function ProductDescription() {
+    const product = useProductsStore((state) => state.selectedProduct);
+    const favorites = useProductsStore(s => s.favorites);
+
+    const toggleFavorite = useProductsStore(s => s.toggleFavorite);
+    const isFavorite = product
+        ? favorites.includes(product.id)
+        : false;
+    return (
+        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:px-0 bg-white rounded-8 sticky top-61 md:static" >
+
+            {product &&
+
+                <>
+                    <button onClick={() => toggleFavorite(product.id)} className="md:mt-34 absolute top-12 right-14 md:static cursor-pointer w-10 h-13">
+                        {isFavorite ?
+                            <svg width="13" height="18" className="w-10 h-13" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.750002C0 0.335791 0.323353 0 0.722222 0H12.2778C12.6766 0 13 0.335791 13 0.750002V17.25C13 17.5227 12.8576 17.7738 12.6279 17.906C12.3982 18.0381 12.1176 18.0305 11.895 17.886L6.5 14.3844L1.105 17.886C0.882367 18.0305 0.601741 18.0381 0.372118 17.906C0.14248 17.7738 0 17.5227 0 17.25V0.750002ZM1.44444 1.5V15.8969L5.73444 13.1124C6.20283 12.8085 6.79717 12.8085 7.26556 13.1124L11.5556 15.8969V1.5H1.44444Z" fill="black" />
+                                <path d="M0.677124 17.3907V1.21875L12.1875 0.515625V17.3907L6.77087 13.875L0.677124 17.3907Z" fill="black" />
+                            </svg>
+                            :
+                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M0 0.541668C0 0.242516 0.248733 0 0.555556 0H9.44444C9.75122 0 10 0.242516 10 0.541668V12.4584C10 12.6553 9.89044 12.8367 9.71378 12.9321C9.53711 13.0275 9.32122 13.022 9.15 12.9177L5 10.3888L0.85 12.9177C0.678744 13.022 0.462878 13.0275 0.286244 12.9321C0.1096 12.8367 0 12.6553 0 12.4584V0.541668ZM1.11111 1.08334V11.4811L4.41111 9.47009C4.77141 9.2506 5.22859 9.2506 5.58889 9.47009L8.88889 11.4811V1.08334H1.11111Z" fill="black" />
+                            </svg>
+                        }
+
+                    </button>
+                    <p className="md:mt-16 text-[8px] leading-[170%] md:text-[14px] md:leading-[20px]">
+                        {product.dateUpload}
+                    </p>
+                    <p className="mt-4 text-[20px] md:text-[14px] leading-[20px]">
+                        {product.name}
+                    </p>
+                    <div className="flex-1 mt-16  overflow-y-scroll min-h-0">
+                        <p className="text-[8px] leading-[170%] ">
+                            {product.description}
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
+
+                        </p>
+                    </div>
+                    <div className="mt-20">
+                        <p className="text-[8px] mb-20">
+                            SIMILAR PRODUCTS
+                        </p>
+                        <div className="flex justify-evenly">
+                            <Link href="#">
+                                <img className="w-144 md:w-110 aspect-square" src={product.image} alt="" />
+
+                            </Link>
+                            <Link href="#">
+                                <img className="w-144 md:w-110 aspect-square" src={product.image} alt="" />
+
+                            </Link>
+                        </div>
+                    </div>
+
+                </>
+            }
+
+        </div>
+    )
+}
+
+
