@@ -2,6 +2,7 @@
 
 import { useProductsStore } from "@/store/useProductStore"
 import Link from "next/link";
+import Image from "next/image";
 export default function ProductDescription() {
     const product = useProductsStore((state) => state.selectedProduct);
     const favorites = useProductsStore(s => s.favorites);
@@ -11,7 +12,7 @@ export default function ProductDescription() {
         ? favorites.includes(product.id)
         : false;
     return (
-        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:px-0 bg-white rounded-8 sticky top-61 md:static" >
+        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:px-0 bg-light-white rounded-8 sticky top-61 md:static" >
 
             {product &&
 
@@ -78,11 +79,11 @@ export default function ProductDescription() {
                         </p>
                         <div className="flex justify-evenly">
                             <Link href="#">
-                                <img className="w-144 md:w-110 aspect-square" src={product.image} alt="" />
-
+                                <Image width={144} className="w-144 md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
+                                
                             </Link>
                             <Link href="#">
-                                <img className="w-144 md:w-110 aspect-square" src={product.image} alt="" />
+                                <Image width={144} className="w-144 md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
 
                             </Link>
                         </div>

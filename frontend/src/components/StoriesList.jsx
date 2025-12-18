@@ -1,7 +1,8 @@
 'use client'
 import { useState } from "react";
 import { useStoriesStore } from "@/store/useStoriesStore";
-
+import Image from "next/image";
+import Link from "next/link";
 export default function StoriesList() {
      const searchTerm = useStoriesStore((state) => state.searchTerm)
      const stories = useStoriesStore((state) => state.stories)
@@ -27,11 +28,13 @@ export default function StoriesList() {
                             onMouseEnter={() => { setHoveredIndex(i + 1) }}
                             onMouseLeave={() => { setHoveredIndex(null) }}
                         >
-                        <div className="flex">
+
+                        <Link href={`/stories/${p.slug}`} className="flex">
                             <div className="w-108 flex-shrink-0">
-                                <img className="w-full object-contain" src={p.img} alt="" />
+                                <Image width={108} alt={p.name} height={108} className="w-full object-contain"  src={p.img} />
+                                
                             </div>
-                            <div className="p-8 w-full bg-white md:bg-light-grey">
+                            <div className="p-8 w-full bg-light-white md:bg-light-grey">
                                 <div className="flex justify-between mb-8">
                                     <p>
                                         {p.type}
@@ -44,7 +47,7 @@ export default function StoriesList() {
                                     {p.name}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
                             
                         </li>
                     );

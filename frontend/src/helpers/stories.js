@@ -1,4 +1,4 @@
-export const rawStories = [
+export const stories = [
     {
         name: "Speaking with Jonathan Anderson about sneakers as a part of a collection",
         type: "Interview",
@@ -12,7 +12,7 @@ export const rawStories = [
         images: ["/imgs/image1.png", "/imgs/image2.png", "/imgs/image3.png"]
     },
     {
-        name: "The North Face Nuptse Traction Chukka",
+        name: "The North Face Nuptse Traction Chukka 2",
         type: "Spotlight",
         dateUpload: "17.04.25",
         img: "/imgs/image2.png",
@@ -38,7 +38,7 @@ export const rawStories = [
         images: ["/imgs/image2.png", "/imgs/image1.png", "/imgs/image3.png"]
     },
     {
-        name: "Speaking with Jonathan Anderson about sneakers as a part of a collection",
+        name: "Speaking with Jonathan Anderson about sneakers as a part of a collection copy",
         type: "Interview",
         dateUpload: "17.04.25",
         img: "/imgs/image1.png",
@@ -51,7 +51,7 @@ export const rawStories = [
         images: ["/imgs/image1.png", "/imgs/image2.png", "/imgs/image3.png"]
     },
     {
-        name: "The North Face Nuptse Traction Chukka",
+        name: "The North Face Nuptse Traction Chukka 2 copy",
         type: "Spotlight",
         dateUpload: "17.04.25",
         img: "/imgs/image2.png",
@@ -64,7 +64,7 @@ export const rawStories = [
         images: ["/imgs/image2.png", "/imgs/image1.png", "/imgs/image3.png"]
     },
     {
-        name: "The North Face Nuptse Traction Chukka",
+        name: "The North Face Nuptse Traction Chukka copy",
         type: "New Release",
         dateUpload: "17.04.25",
         img: "/imgs/image3.png",
@@ -77,3 +77,16 @@ export const rawStories = [
         images: ["/imgs/image2.png", "/imgs/image1.png", "/imgs/image3.png"]
     }
 ]
+
+const slugify = (str) =>
+  str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+
+export const rawStories = stories.map(item => ({
+  ...item,
+  slug: slugify(item.name),
+}));

@@ -2,7 +2,7 @@
 import { useProductsStore } from "@/store/useProductStore"
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-
+import smoothScrollContainer from "@/helpers/scrollTo";
 import Link from "next/link";
 
 export default function ProductsList() {
@@ -14,18 +14,25 @@ export default function ProductsList() {
     const products = useProductsStore((state) => state.products)
     const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover, hoveredIndexGrid } = useProductsStore();
     const refs = useRef([]);
+    const containerRef = useRef(null)
 
     const getFilteredProducts = useProductsStore(
         (state) => state.getFilteredProducts
     )
-    useEffect(() => {
-        if (hoveredIndexGrid !== null) {
-            refs.current[hoveredIndexGrid]?.scrollIntoView({
-                block: "center",
-                behavior: "smooth",
-            });
+   useEffect(() => {
+    if (hoveredIndexGrid !== null) {
+        const target = refs.current[hoveredIndexGrid]
+        const container = containerRef.current
+
+        if (target && container) {
+            smoothScrollContainer({
+                container,
+                target,
+                duration: 1200,
+            })
         }
-    }, [hoveredIndexGrid]);
+    }
+}, [hoveredIndexGrid])
 
     const baseProducts = isBookmarksPage
         ? products.filter(p => favorites.includes(p.id))
@@ -34,7 +41,7 @@ export default function ProductsList() {
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     return (
-        <ul className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
+        <ul ref={containerRef} className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
             {filteredProducts.length > 0 ? (
                 filteredProducts.map((p, i) => {
                     const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
@@ -43,7 +50,7 @@ export default function ProductsList() {
                         <li
                             ref={el => (refs.current[i] = el)}
                             key={i}
-                            className={`text-[8px] text-black mb-9 last:mb-0 transition-opacity duration-200 ${isDimmed ? "md:opacity-25" : "md:opacity-100"
+                            className={`text-[8px] text-black mb-9 last:mb-0 transition-opacity duration-500 ${isDimmed ? "md:opacity-25" : "md:opacity-100"
                                 }`}
                             onMouseEnter={() => { setHoveredIndex(i), setHoverWithDelay("list", i) }}
                             onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}

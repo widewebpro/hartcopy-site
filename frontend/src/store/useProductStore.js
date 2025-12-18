@@ -64,7 +64,7 @@ export const useProductsStore = create((set, get) => ({
       } else if (source === "list") {
         set({ hoveredIndexList: index });
       }
-    }, 300);
+    }, 800);
   },
 
   clearHover: (source) => {

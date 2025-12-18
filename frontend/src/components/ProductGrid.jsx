@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ProductCard from "./ProductCard"
 import { usePathname } from "next/navigation";
-
+import smoothScrollContainer from "@/helpers/scrollTo";
 export default function ProductGrid() {
     const pathname = usePathname();
     const isBookmarksPage = pathname === "/bookmarks";
@@ -26,21 +26,28 @@ export default function ProductGrid() {
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     const { hoveredIndexList } = useProductsStore();
+    const containerRef = useRef(null)
 
     const refs = useRef([]);
 useEffect(() => {
         setThisIsMobile(window.innerWidth <= 769)
     }, [])
-    useEffect(() => {
+     useEffect(() => {
         if (hoveredIndexList !== null) {
-            refs.current[hoveredIndexList]?.scrollIntoView({
-                block: "start",
-                behavior: "smooth",
-            });
+            const target = refs.current[hoveredIndexList]
+            const container = containerRef.current
+    
+            if (target && container) {
+                smoothScrollContainer({
+                    container,
+                    target,
+                    duration: 1200,
+                })
+            }
         }
-    }, [hoveredIndexList]);
+    }, [hoveredIndexList])
     return (
-        <div className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 product-grid md:flex-1 md:overflow-y-scroll py-76 md:py-0`}>
+        <div ref={containerRef} className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 product-grid md:flex-1 md:overflow-y-scroll py-76 md:py-0`}>
             {filteredProducts.map((p, i) => (
                 <div key={i} ref={el => (refs.current[i] = el)}>
                     <Link href={`/products/${p.slug}`}>

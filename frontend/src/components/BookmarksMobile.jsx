@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useProductsStore } from "@/store/useProductStore"
-
+import Image from "next/image";
 
 export default function BookmarksMobile() {
     const favorites = useProductsStore(s => s.favorites);
@@ -20,11 +20,12 @@ export default function BookmarksMobile() {
                     return (
                         <li
                             key={i}
-                            className={`text-[8px]  bg-white cursor-pointer text-black mb-9 last:mb-0 rounded-[8px] md:rounded-0 overflow-hidden`}
+                            className={`text-[8px]  bg-light-white cursor-pointer text-black mb-9 last:mb-0 rounded-[8px] md:rounded-0 overflow-hidden`}
                         >
                         <Link href={`/products/${p.slug}`} className="flex items-center justify-between pl-16 pr-24">
                             <div className="w-84 h-84 mr-24 flex-shrink-0">
-                                <img className="w-full object-contain" src={p.image} alt="" />
+                                <Image className="w-full object-contain" width={84} height={84} alt={p.name} src={p.image} />
+                                
                             </div>
                             <div className="w-full flex items-center justify-between">
                                     <p className="text-[15px]">

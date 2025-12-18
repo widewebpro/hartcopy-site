@@ -2,14 +2,7 @@
 const nextConfig = {
   output: 'export',
   images: {
-    domains: [process.env.CRAFT_DOMAIN],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: process.env.CRAFT_DOMAIN,
-        pathname: '/uploads/**',
-      }
-    ]
+    unoptimized: true,
   },
   env: {
     SITE_NAME: process.env.SITE_NAME,
