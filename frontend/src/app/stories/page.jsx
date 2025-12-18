@@ -10,10 +10,13 @@ import StoriesList from "@/components/StoriesList";
 import StoriesMain from "@/components/StoriesMain";
 import { useStoriesStore } from "@/store/useStoriesStore";
 import BottomPanel from "@/components/BottomPanel";
+import { useState, useEffect } from "react";
 export default function SoriesPage() {
-    const thisIsMobile = window.innerWidth <= 769
+    const [thisIsMobile, setThisIsMobile] = useState(false)
     const selectedStories = useStoriesStore((state) => state.selectedStories)
-    
+    useEffect(() => {
+        setThisIsMobile(window.innerWidth <= 769)
+    }, [])
     return (
         <div className="container md:flex">
           {thisIsMobile &&

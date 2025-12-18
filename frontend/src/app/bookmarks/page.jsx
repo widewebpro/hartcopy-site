@@ -4,9 +4,13 @@ import MainSection from '@/components/MainSection'
 import Header from '@/components/Header'
 import BookmarksMobile from '@/components/BookmarksMobile'
 import BottomPanel from '@/components/BottomPanel'
+import { useState, useEffect } from 'react'
 export default function Bookmarks() {
-    const thisIsMobile = window.innerWidth <= 769
+    const [thisIsMobile, setThisIsMobile] = useState(false)
 
+    useEffect(() => {
+        setThisIsMobile(window.innerWidth <= 769)
+    }, [])
     return (
 
 
