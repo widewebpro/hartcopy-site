@@ -24,7 +24,7 @@ export default function Navigation() {
             href={`${page.url}`}
             role="menuitem"
             tabIndex={0}
-            className={`text-[20px] md:text-[8px] outline-none hover:text-red uppercase transition-color duration-300 ${
+            className={`text-[1.25rem] md:text-[0.5rem] outline-none hover:text-red uppercase transition-color duration-300 ${
               pathname === `${page.url}` ? 'text-red italic' : 'text-black'
             }`}
             aria-current={pathname === `/${page.url}` ? 'page' : undefined}

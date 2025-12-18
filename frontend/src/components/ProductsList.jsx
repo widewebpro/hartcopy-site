@@ -50,7 +50,7 @@ export default function ProductsList() {
                         <li
                             ref={el => (refs.current[i] = el)}
                             key={i}
-                            className={`text-[8px] text-black mb-9 last:mb-0 transition-opacity duration-500 ${isDimmed ? "md:opacity-25" : "md:opacity-100"
+                            className={`text-[0.5rem] text-black mb-9 last:mb-0 transition-opacity duration-500 ${isDimmed ? "md:opacity-25" : "md:opacity-100"
                                 }`}
                             onMouseEnter={() => { setHoveredIndex(i), setHoverWithDelay("list", i) }}
                             onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}

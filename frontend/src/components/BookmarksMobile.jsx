@@ -20,7 +20,7 @@ export default function BookmarksMobile() {
                     return (
                         <li
                             key={i}
-                            className={`text-[8px]  bg-light-white cursor-pointer text-black mb-9 last:mb-0 rounded-[8px] md:rounded-0 overflow-hidden`}
+                            className={`text-[0.5rem]  bg-light-white cursor-pointer text-black mb-9 last:mb-0 rounded-[0.5rem] md:rounded-0 overflow-hidden`}
                         >
                         <Link href={`/products/${p.slug}`} className="flex items-center justify-between pl-16 pr-24">
                             <div className="w-84 h-84 mr-24 flex-shrink-0">
@@ -28,7 +28,7 @@ export default function BookmarksMobile() {
                                 
                             </div>
                             <div className="w-full flex items-center justify-between">
-                                    <p className="text-[15px]">
+                                    <p className="text-[0.938rem]">
                                         {p.name}
                                     </p>
                                     <button onClick={() => toggleFavorite(p.id)}>

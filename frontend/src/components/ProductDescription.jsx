@@ -30,14 +30,14 @@ export default function ProductDescription() {
                         }
 
                     </button>
-                    <p className="md:mt-16 text-[8px] leading-[170%] md:text-[14px] md:leading-[20px]">
+                    <p className="md:mt-16 text-[0.5rem] leading-[170%] md:text-[0.875rem] md:leading-[1.25rem]">
                         {product.dateUpload}
                     </p>
-                    <p className="mt-4 text-[20px] md:text-[14px] leading-[20px]">
+                    <p className="mt-4 text-[1.25rem] md:text-[0.875rem] leading-[1.25rem]">
                         {product.name}
                     </p>
                     <div className="flex-1 mt-16  overflow-y-scroll min-h-0">
-                        <p className="text-[8px] leading-[170%] ">
+                        <p className="text-[0.5rem] leading-[170%] ">
                             {product.description}
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
@@ -74,7 +74,7 @@ export default function ProductDescription() {
                         </p>
                     </div>
                     <div className="mt-20">
-                        <p className="text-[8px] mb-20">
+                        <p className="text-[0.5rem] mb-20">
                             SIMILAR PRODUCTS
                         </p>
                         <div className="flex justify-evenly">

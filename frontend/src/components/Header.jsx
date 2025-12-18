@@ -7,7 +7,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="navigation bg-light-white rounded-[8px]">
+    <header className="navigation bg-light-white rounded-[0.5rem]">
       <div>
         <div className="md:mb-24 px-20 md:px-0 py-18 md:py-0 flex items-center justify-between">
           <Logo />

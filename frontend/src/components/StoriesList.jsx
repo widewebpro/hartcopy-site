@@ -23,7 +23,7 @@ export default function StoriesList() {
                     return (
                         <li
                             key={i}
-                            className={`text-[8px] ${hoveredIndex && hoveredIndex !== (i + 1) ?  'opacity-25' :  ''} cursor-pointer text-black mb-9 last:mb-0 rounded-[8px] md:rounded-0 overflow-hidden`}
+                            className={`text-[0.5rem] ${hoveredIndex && hoveredIndex !== (i + 1) ?  'opacity-25' :  ''} cursor-pointer text-black mb-9 last:mb-0 rounded-[0.5rem] md:rounded-0 overflow-hidden`}
                             onClick={() => setSelectedStories(p)}
                             onMouseEnter={() => { setHoveredIndex(i + 1) }}
                             onMouseLeave={() => { setHoveredIndex(null) }}
@@ -43,7 +43,7 @@ export default function StoriesList() {
                                         {p.dateUpload}
                                     </p>
                                 </div>
-                                <p className="text-[14px] leading-[16px]">
+                                <p className="text-[0.875rem] leading-[1rem]">
                                     {p.name}
                                 </p>
                             </div>

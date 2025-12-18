@@ -18,26 +18,26 @@ export default function StoriesMain({ slug }) {
         })
     }, [activeStory])
     return (
-        <div className="w-full md:flex md:flex-col md:ml-8 md:max-h-[calc(100vh-48px)] md:h-screen md:overflow-hidden">
+        <div className="w-full md:flex md:flex-col md:ml-8 md:max-h-[calc(100vh-3rem)] md:h-screen md:overflow-hidden">
             <div ref={containerRef} className='h-full md:flex-1 md:overflow-y-scroll pt-71 md:pt-0'>
                 {activeStory &&
                     <div className="md:p-14 md:bg-light-white">
-                        <div className="rounded-[8px] mb-34 md:mb-29 md:px-28 md:py-21 max-h-[600px] md:h-[600px] w-[72vw] md:w-[unset] mx-auto relative overflow-hidden md:flex items-end">
+                        <div className="rounded-[0.5rem] mb-34 md:mb-29 md:px-28 md:py-21 max-h-[37.5rem] md:h-[37.5rem] w-[72vw] md:w-[unset] mx-auto relative overflow-hidden md:flex items-end">
                             <div className="md:absolute inset-0">
                                 <Image width={1084} alt={activeStory.name} height={600} className="w-full h-full object-cover" src={activeStory.img} />
 
                             </div>
-                            <div className="text-white-2 max-w-[348px] relative hidden md:block">
-                                <p className="text-[8px] mb-12">
+                            <div className="text-white-2 max-w-[21.75] relative hidden md:block">
+                                <p className="text-[0.5rem] mb-12">
                                     {activeStory.type}
                                 </p>
-                                <h1 className=" text-[30px] leading-[38px] mb-12">{activeStory.name}</h1>
-                                <h2 className="text-[12px] leading-[12px]">{activeStory.subtitle}</h2>
+                                <h1 className=" text-[1.875] leading-[2.375] mb-12">{activeStory.name}</h1>
+                                <h2 className="text-[0.75rem] leading-[0.75rem]">{activeStory.subtitle}</h2>
                             </div>
                         </div>
                         <div className="bg-light-white md:bg-[unset] px-12 py-10 md:px-0 md:py-0">
                             <div className=" relative md:hidden">
-                                <div className="flex justify-between items-center text-[8px] mb-12">
+                                <div className="flex justify-between items-center text-[0.5rem] mb-12">
                                     <p className="">
                                         {activeStory.type}
                                     </p>
@@ -46,13 +46,13 @@ export default function StoriesMain({ slug }) {
                                     </p>
                                 </div>
 
-                                <h1 className=" text-[20px] leading-[20px] mb-12">{activeStory.name}</h1>
-                                <h2 className="text-[12px] leading-[180%]">{activeStory.subtitle}</h2>
+                                <h1 className=" text-[1.25rem] leading-[1.25rem] mb-12">{activeStory.name}</h1>
+                                <h2 className="text-[0.75rem] leading-[180%]">{activeStory.subtitle}</h2>
                             </div>
-                            <div className="md:px-26 text-[8px] md:text-[20px] leading-[170%] md:leading-[25px] mb-30 md:mb-80">
+                            <div className="md:px-26 text-[0.5] md:text-[1.25rem] leading-[170%] md:leading-[1.563rem] mb-30 md:mb-80">
                                 {activeStory.copy}
                             </div>
-                            <div className="max-w-[492px] mx-auto text-[8px] md:text-[12px] leading-[170%] mb-30 md:mb-80 text-primary">
+                            <div className="max-w-[30.75rem] mx-auto text-[0.5rem] md:text-[0.75rem] leading-[170%] mb-30 md:mb-80 text-primary">
                                 {activeStory.description}
                             </div>
                             <div className="md:grid grid-cols-3 gap-20 md:px-55">

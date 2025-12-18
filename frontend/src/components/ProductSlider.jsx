@@ -19,7 +19,7 @@ export default function ProductSlider() {
             {product &&
                 <>
                     <div className='md:h-full flex flex-col justify-start items-stretch w-full pt-10 mb-5 md:mb-0 sticky top-61 md:static'>
-                        <div className='pl-10 text-[10px] mb-5 md:absolute  md:top-5 md:right-5'>
+                        <div className='pl-10 text-[0.625rem] mb-5 md:absolute  md:top-5 md:right-5'>
                             {product.sku}
                         </div>
 
