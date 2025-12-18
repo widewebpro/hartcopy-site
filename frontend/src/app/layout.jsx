@@ -11,15 +11,18 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const data = await fetchGraphQL(GLOBALS_QUERY, {}, {
-    cache: 'force-cache',
-    next: { revalidate: 3600 }
-  })
+  // const data = await fetchGraphQL(GLOBALS_QUERY, {}, {
+  //   cache: 'force-cache',
+  //   next: { revalidate: 3600 }
+  // })
 
 
-  const globals = data?.globalEntries?.[0] || {
+  // const globals = data?.globalEntries?.[0] || {
     
-  }
+  // }
+  const globals = {
+  logo: [{ url: '/logo.svg' }],
+};
   const pages = [
     {
       id: 1,
