@@ -19,27 +19,38 @@ export default function ProductsList() {
     const getFilteredProducts = useProductsStore(
         (state) => state.getFilteredProducts
     )
-   useEffect(() => {
-    if (hoveredIndexGrid !== null) {
-        const target = refs.current[hoveredIndexGrid]
-        const container = containerRef.current
+    useEffect(() => {
+        if (hoveredIndexGrid !== null) {
+            const target = refs.current[hoveredIndexGrid]
+            const container = containerRef.current
 
-        if (target && container) {
-            smoothScrollContainer({
-                container,
-                target,
-                duration: 1200,
-            })
+            if (target && container) {
+                smoothScrollContainer({
+                    container,
+                    target,
+                    duration: 1200,
+                })
+            }
         }
-    }
-}, [hoveredIndexGrid])
+    }, [hoveredIndexGrid])
 
     const baseProducts = isBookmarksPage
         ? products.filter(p => favorites.includes(p.id))
         : products;
-    const filteredProducts = baseProducts.filter(p =>
-        p.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredProducts = baseProducts.filter(p => {
+        const query = String(searchTerm).toLowerCase()
+
+        return [
+            p.name,
+            p.brand,
+            p.description,
+            p.dateUpload,
+        ]
+            .filter(Boolean)
+            .some(field =>
+                field.toString().toLowerCase().includes(query)
+            )
+    })
     return (
         <ul ref={containerRef} className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
             {filteredProducts.length > 0 ? (

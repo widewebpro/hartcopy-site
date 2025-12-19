@@ -15,7 +15,19 @@ export default function StoriesList() {
         (state) => state.setSelectedStories
     )
     
-    const filteredStories = getFilteredStories()
+    const filteredStories = stories.filter(p => {
+        const query = String(searchTerm).toLowerCase()
+
+        return [
+            p.name,
+            p.type,
+            p.dateUpload,
+        ]
+            .filter(Boolean)
+            .some(field =>
+                field.toString().toLowerCase().includes(query)
+            )
+    })
     return (
         <ul className="md:flex-1 md:overflow-y-scroll mb-4 pt-70 md:pt-0 md:mt-32 pb-25">
             {filteredStories.length > 0 ? (
