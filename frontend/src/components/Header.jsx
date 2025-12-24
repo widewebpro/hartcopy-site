@@ -1,26 +1,36 @@
 'use client'
 import Navigation from './Navigation'
 import Logo from './Logo'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 export default function Header() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
 
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
   return (
     <header className="navigation bg-light-white rounded-[0.5rem]">
       <div>
-        <div className="md:mb-24 relative z-20 bg-light-white md:bg-[unset] md:static px-20 md:px-0 py-18 md:py-0 flex items-center justify-between">
+        <div className="md:mb-24 relative z-20 bg-light-white rounded-[0.5rem] md:bg-[unset] md:static px-20 md:px-0 pt-18 pb-17 md:py-0 flex items-center justify-between">
           <Logo />
           <button
             className="md:hidden flex flex-col"
             onClick={() => setOpen(!open)}
             aria-label="Open menu"
           >
-            {open ? (<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {open ? (<svg width="15" height="15" className='h-13' viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.1213 12.1213L7.12134 7.12134M7.12134 7.12134L2.12134 2.12134M7.12134 7.12134L12.1213 2.12134M7.12134 7.12134L2.12134 12.1213" stroke="#E62B25" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round" />
             </svg>)
               :
-              (<svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              (<svg width="14" height="15" className='h-13' viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 13.5H14M0 7.5H14M0 1.5H14" stroke="#E62B25" strokeWidth="3" strokeLinejoin="round" />
               </svg>)
             }

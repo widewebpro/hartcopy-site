@@ -25,7 +25,7 @@ export default function ProductCard({ product, index }) {
       onMouseEnter={() => {setHoveredIndex(index); setHoverWithDelay("grid", index)}}
       onMouseLeave={() => {setHoveredIndex(null); clearHover("grid")}}>
       {product.new &&
-        <div className='w-25 absolute top-4 right-9 h-14  text-[0.5rem] flex items-center justify-center text-light-white rounded-[0.188rem] bg-red'>
+        <div className='w-27 uppercase md:normal-case md:w-25 absolute top-4 right-9 h-14  text-[0.5rem] flex items-center justify-center text-light-white rounded-[0.188rem] bg-red'>
           New
         </div>
       }

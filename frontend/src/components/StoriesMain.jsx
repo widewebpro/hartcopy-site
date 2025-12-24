@@ -27,11 +27,11 @@ export default function StoriesMain({ slug }) {
                                 <Image width={1084} alt={activeStory.name} height={600} className="w-full h-full object-cover" src={activeStory.img} />
 
                             </div>
-                            <div className="text-white-2 max-w-[21.75] relative hidden md:block">
+                            <div className="text-white-2 max-w-[21.75rem] relative hidden md:block">
                                 <p className="text-[0.5rem] mb-12">
                                     {activeStory.type}
                                 </p>
-                                <h1 className=" text-[1.875] leading-[2.375] mb-12">{activeStory.name}</h1>
+                                <h1 className=" text-[1.875rem] leading-[2.375rem] mb-12">{activeStory.name}</h1>
                                 <h2 className="text-[0.75rem] leading-[0.75rem]">{activeStory.subtitle}</h2>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ export default function StoriesMain({ slug }) {
                                 <h1 className=" text-[1.25rem] leading-[1.25rem] mb-12">{activeStory.name}</h1>
                                 <h2 className="text-[0.75rem] leading-[180%]">{activeStory.subtitle}</h2>
                             </div>
-                            <div className="md:px-26 text-[0.5] md:text-[1.25rem] leading-[170%] md:leading-[1.563rem] mb-30 md:mb-80">
+                            <div className="md:px-26 text-[0.5rem] md:text-[1.25rem] leading-[170%] md:leading-[1.563rem] mb-30 md:mb-80">
                                 {activeStory.copy}
                             </div>
                             <div className="max-w-[30.75rem] mx-auto text-[0.5rem] md:text-[0.75rem] leading-[170%] mb-30 md:mb-80 text-primary">

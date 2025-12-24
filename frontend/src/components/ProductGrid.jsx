@@ -57,7 +57,7 @@ useEffect(() => {
         }
     }, [hoveredIndexList])
     return (
-        <div ref={containerRef} className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 product-grid md:flex-1 md:overflow-y-scroll py-76 md:py-0`}>
+        <div ref={containerRef} className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 md:gap-20 product-grid md:flex-1 md:overflow-y-scroll pb-76 pt-48 md:py-0 pl-11`}>
             {filteredProducts.map((p, i) => (
                 <div key={i} ref={el => (refs.current[i] = el)}>
                     <Link href={`/products/${p.slug}`}>
