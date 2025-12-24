@@ -5,29 +5,37 @@ import { usePathname } from 'next/navigation'
 import { useSiteStore } from '@/store/useSiteStore'
 
 export default function Navigation() {
-    const { pages } = useSiteStore()
+  const { pages } = useSiteStore()
   const pathname = usePathname()
-  
+
+  const normalizedPathname =
+    pathname === '/' ? '/' : pathname.replace(/\/$/, '')
+
   const isActiveOrChild = (page) => {
-    const currentPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
     const pagePath = `/${page.uri}`
-    return currentPath === pagePath || currentPath.startsWith(`${pagePath}/`)
+    return (
+      normalizedPathname === pagePath ||
+      normalizedPathname.startsWith(`${pagePath}/`)
+    )
   }
-  
+
   const renderPageLinks = (pages) => {
     return pages.map(page => {
       const isActive = isActiveOrChild(page)
-      
+
       return (
         <li key={page.id} role="none" className="relative mb-80 last:mb-0 md:mb-0 md:mr-24 md:last:mr-0">
-          <Link 
+          <Link
             href={`${page.url}`}
             role="menuitem"
             tabIndex={0}
-            className={`text-[1.25rem] md:text-[0.5rem] outline-none hover:text-red uppercase transition-color duration-300 ${
-              pathname === `${page.url}` ? 'text-red italic' : 'text-black'
-            }`}
-            aria-current={pathname === `/${page.url}` ? 'page' : undefined}
+            className={`text-[1.25rem] md:text-[0.5rem] outline-none hover:text-red uppercase transition-color duration-300 ${normalizedPathname === page.url
+                ? 'text-red italic'
+                : 'text-black'
+              }`}
+            aria-current={
+              normalizedPathname === page.url ? 'page' : undefined
+            }
           >
             {page.title}
           </Link>
@@ -40,7 +48,7 @@ export default function Navigation() {
       )
     })
   }
-  
+
   return (
     <nav className="sm:basis-2/3 grow-1 relative z-10" aria-label="Primary">
       <ul className="flex flex-col md:flex-row items-center pt-[18vh] md:pt-0" role="menubar">

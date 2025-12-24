@@ -6,9 +6,10 @@ import Link from "next/link";
 import ProductCard from "./ProductCard"
 import { usePathname } from "next/navigation";
 import smoothScrollContainer from "@/helpers/scrollTo";
+import { normalizePath } from "@/helpers/normalizePath";
 export default function ProductGrid() {
     const pathname = usePathname();
-    const isBookmarksPage = pathname === "/bookmarks";
+    const isBookmarksPage = normalizePath(pathname) === "/bookmarks";
     const favorites = useProductsStore(s => s.favorites);
     const searchTerm = useProductsStore((state) => state.searchTerm)
     const products = useProductsStore((state) => state.products)

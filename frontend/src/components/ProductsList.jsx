@@ -4,10 +4,11 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import smoothScrollContainer from "@/helpers/scrollTo";
 import Link from "next/link";
+import { normalizePath } from "@/helpers/normalizePath";
 
 export default function ProductsList() {
     const pathname = usePathname();
-    const isBookmarksPage = pathname === "/bookmarks";
+    const isBookmarksPage = normalizePath(pathname) === "/bookmarks";
     const favorites = useProductsStore(s => s.favorites);
 
     const searchTerm = useProductsStore((state) => state.searchTerm)
