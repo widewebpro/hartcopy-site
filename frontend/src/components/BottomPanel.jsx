@@ -52,7 +52,7 @@ export default function BottomPanel({ page }) {
                             <span className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] hidden md:block uppercase mr-17">Zoom</span>
                             <button
                                 onClick={increase}
-                                className="flex items-center text-[#000] hover:text-red transition-color duration-300 justify-center mr-58 md:mr-27 w-8 h-8"
+                                className="flex items-center text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300 justify-center mr-58 md:mr-27 w-8 h-8"
                                 disabled={cols === options[options.length - 1]}
                             >
                                 <svg width="5" height="1" viewBox="0 0 5 1" className="w-8 h-2 md:w-[unset] md:h-[unset]" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@ export default function BottomPanel({ page }) {
                             </button>
                             <button
                                 onClick={decrease}
-                                className="flex items-center justify-center w-8 h-8 text-[#000] hover:text-red transition-color duration-300"
+                                className="flex items-center justify-center w-8 h-8 text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300"
                                 disabled={cols === options[0]}
                             >
                                 <svg width="5" height="5" className="w-8 h-8 md:w-[unset] md:h-[unset]" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">

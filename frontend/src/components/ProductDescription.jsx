@@ -3,6 +3,7 @@
 import { useProductsStore } from "@/store/useProductStore"
 import Link from "next/link";
 import Image from "next/image";
+import { formatDate } from "@/helpers/formatDate";
 export default function ProductDescription() {
     const product = useProductsStore((state) => state.selectedProduct);
     const favorites = useProductsStore(s => s.favorites);
@@ -12,7 +13,7 @@ export default function ProductDescription() {
         ? favorites.includes(product.id)
         : false;
     return (
-        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:px-0 bg-light-white rounded-8 sticky top-61 md:static" >
+        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:pl-0 md:pr-8 bg-light-white rounded-8 sticky top-61 md:static" >
 
             {product &&
 
@@ -31,7 +32,7 @@ export default function ProductDescription() {
 
                     </button>
                     <p className="md:mt-16 text-[0.5rem] leading-[170%] md:text-[0.875rem] md:leading-[1.25rem]">
-                        {product.dateUpload}
+                        {formatDate(product.dateUpload)}
                     </p>
                     <p className="mt-4 text-[1.25rem] md:text-[0.875rem] leading-[1.25rem]">
                         {product.name}
