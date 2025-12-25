@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <header className="navigation bg-light-white rounded-[0.5rem]">
       <div>
-        <div className="md:mb-24 relative z-20 bg-light-white rounded-[0.5rem] md:bg-[unset] md:static px-20 md:px-0 pt-18 pb-17 md:py-0 flex items-center justify-between">
+        <div className="md:mb-24 relative z-20 bg-light-white rounded-[0.5rem] md:bg-[unset] md:static px-20 md:px-0 pt-22 pb-21 md:py-0 flex items-center justify-between">
           <Logo />
           <button
             className="md:hidden flex flex-col"

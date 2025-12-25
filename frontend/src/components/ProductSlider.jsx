@@ -15,11 +15,11 @@ export default function ProductSlider() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
-        <div className='md:h-full pt-61 md:pt-0 relative'>
+        <div className='md:h-full pt-37 md:pt-0 relative'>
             {product &&
                 <>
-                    <div className='md:h-full flex flex-col justify-start items-stretch w-full pt-10 mb-5 md:mb-0 sticky top-61 md:static'>
-                        <div className='pl-10 text-[0.625rem] mb-5 md:absolute  md:top-5 md:right-5'>
+                    <div className='md:h-full mx-[-0.75rem] md:mx-0 flex flex-col justify-start items-stretch w-[calc(100%+24px)] md:w-full md:pt-10 mb-5 md:mb-0 sticky top-61 md:static'>
+                        <div className='pl-12 md:pl-10 text-[0.625rem] mb-5 absolute top-12 md:top-5 md:right-5'>
                             {product.sku}
                         </div>
 
@@ -44,21 +44,21 @@ export default function ProductSlider() {
                             <SwiperSlide>
                                 <div className="w-full h-full flex justify-center items-center">
 
-                                    <Image width={600} className="max-w-full max-h-full object-contain" height={600} alt={product.name} src={product.image} />
+                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain" height={600} alt={product.name} src={product.image} />
+                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <button
-                                className="product-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 md:hidden"
+                                className="product-prev absolute w-24 h-22 left-24 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 aria-label="Previous slide"
                             >
-                                <svg width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                <svg width="12" className='w-24 h-22' height="11" viewBox="0 0 12 11" fill="none">
                                     <path
                                         d="M11 5.41418L1 5.41418M1 5.41418L5 9.41418M1 5.41418L5 1.41418"
                                         stroke="black"
@@ -70,10 +70,10 @@ export default function ProductSlider() {
                             </button>
 
                             <button
-                                className="product-next absolute right-4 top-1/2 -translate-y-1/2 z-10 md:hidden"
+                                className="product-next absolute w-24 h-22  right-24 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 aria-label="Next slide"
                             >
-                                <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="12" className='w-24 h-22' height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 5.41418L11 5.41418M11 5.41418L7 1.41418M11 5.41418L7 9.41418" stroke="black" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round" />
                                 </svg>
 
@@ -84,14 +84,14 @@ export default function ProductSlider() {
                             spaceBetween={8}
                             slidesPerView={'auto'}
                             modules={[FreeMode, Navigation, Thumbs]}
-                            className='mt-20 w-full'
+                            className='mt-20 w-full !px-12 md:!px-0 md:ml-[-1px] md:!absolute md:!bottom-0'
                         >
-                            <SwiperSlide className='w-70 h-42 max-w-70 max-h-42 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:max-h-122'>
-                                <Image width={122} className="w-70 h-42 max-w-70 max-h-42 md:w-122 md:h-122 md:max-w-122 md:max-h-122 object-contain" height={122} alt={product.name} src={product.image} />
+                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 md:rounded-[8px] overflow-hidden'>
+                                <Image width={122} className=" h-56  w-93 max-w-93 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
 
                             </SwiperSlide>
-                            <SwiperSlide className='w-70 h-42 max-w-70 max-h-42 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:max-h-122'>
-                                <Image width={122} className="w-70 h-42 max-w-70 max-h-42 md:w-122 md:h-122 md:max-w-122 md:max-h-122 object-contain" height={122} alt={product.name} src={product.image} />
+                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 md:rounded-[8px] overflow-hidden'>
+                                <Image width={122} className=" h-56 w-93 max-w-93 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
                             </SwiperSlide>
                         </Swiper>
                     </div>

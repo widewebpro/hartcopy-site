@@ -13,12 +13,12 @@ export default function ProductDescription() {
         ? favorites.includes(product.id)
         : false;
     return (
-        <div className="md:flex flex-1 flex-col min-h-0 pb-20 pl-10 pr-17 py-8 md:py-0 md:pl-0 md:pr-8 bg-light-white rounded-8 sticky top-61 md:static" >
+        <div className="md:flex flex-1 flex-col min-h-0 p-20 md:py-0 md:pl-0 md:pr-8 bg-light-white rounded-12 md:rounded-8 sticky top-61 md:static" >
 
             {product &&
 
                 <>
-                    <button onClick={() => toggleFavorite(product.id)} className="md:mt-34 absolute top-12 right-14 md:static cursor-pointer w-10 h-13">
+                    <button onClick={() => toggleFavorite(product.id)} className="md:mt-34 absolute top-12 right-14 md:static cursor-pointer w-32 h-32 flex items-center justify-center md:w-10 md:h-13">
                         {isFavorite ?
                             <svg width="13" height="18" className="w-10 h-13" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M0 0.750002C0 0.335791 0.323353 0 0.722222 0H12.2778C12.6766 0 13 0.335791 13 0.750002V17.25C13 17.5227 12.8576 17.7738 12.6279 17.906C12.3982 18.0381 12.1176 18.0305 11.895 17.886L6.5 14.3844L1.105 17.886C0.882367 18.0305 0.601741 18.0381 0.372118 17.906C0.14248 17.7738 0 17.5227 0 17.25V0.750002ZM1.44444 1.5V15.8969L5.73444 13.1124C6.20283 12.8085 6.79717 12.8085 7.26556 13.1124L11.5556 15.8969V1.5H1.44444Z" fill="black" />
@@ -31,14 +31,14 @@ export default function ProductDescription() {
                         }
 
                     </button>
-                    <p className="md:mt-16 text-[0.5rem] leading-[170%] md:text-[0.875rem] md:leading-[1.25rem]">
+                    <p className="md:mt-16 text-[0.75rem] leading-[170%] md:text-[0.875rem] md:leading-[1.25rem]">
                         {formatDate(product.dateUpload)}
                     </p>
-                    <p className="mt-4 text-[1.25rem] md:text-[0.875rem] leading-[1.25rem]">
+                    <p className="mt-4 text-[1.375rem] md:text-[0.875rem] leading-[1.375rem] md:leading-[1.25rem]">
                         {product.name}
                     </p>
                     <div className="flex-1 mt-16  overflow-y-scroll min-h-0">
-                        <p className="text-[0.5rem] leading-[170%] ">
+                        <p className="text-[0.5rem] leading-[150%] ">
                             {product.description}
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
@@ -78,13 +78,13 @@ export default function ProductDescription() {
                         <p className="text-[0.5rem] mb-20">
                             SIMILAR PRODUCTS
                         </p>
-                        <div className="flex justify-evenly">
-                            <Link href="#">
-                                <Image width={144} className="w-144 md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
+                        <div className="flex justify-between flex-wrap">
+                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]" href={`/products/${product.slug}`}>
+                                <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
                                 
                             </Link>
-                            <Link href="#">
-                                <Image width={144} className="w-144 md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
+                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]" href={`/products/${product.slug}`}>
+                                <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
 
                             </Link>
                         </div>
