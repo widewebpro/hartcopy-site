@@ -1,7 +1,6 @@
 import { GLOBALS_QUERY } from '../queries/globals'
 import { fetchGraphQL } from '../lib/graphql'
 import "./globals.css"
-import { SkipLink } from '../components/SkipLink'
 import { SiteDataInitializer } from '@/components/store-inits/SiteDataInitializer'
 import { ProductsInitializer } from '@/components/store-inits/ProductInitializer'
 import { products } from '@/helpers/products'
@@ -65,7 +64,6 @@ export default async function RootLayout({ children }) {
         }} />
 
         <ProductsInitializer products={products} />
-        <SkipLink />
         <main id="main" className="min-h-screen">
             {children}
         </main>

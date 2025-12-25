@@ -4,4 +4,5 @@
 @import "./base/container.css";
 @import "./base/grid.css";
 @import "./base/globals.css";
+@import "./base/swiper.css";
 @import "./theme.css";

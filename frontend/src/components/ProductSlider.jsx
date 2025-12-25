@@ -19,7 +19,7 @@ export default function ProductSlider() {
             {product &&
                 <>
                     <div className='md:h-full mx-[-0.75rem] md:mx-0 flex flex-col justify-start items-stretch w-[calc(100%+24px)] md:w-full md:pt-10 mb-5 md:mb-0 sticky top-61 md:static'>
-                        <div className='pl-12 md:pl-10 text-[0.625rem] mb-5 absolute top-12 md:top-5 md:right-5'>
+                        <div className='pl-12 md:pl-10 text-[0.625rem] md:text-[0.875rem] md:leading-[1rem] mb-5 absolute top-12 md:top-5 md:right-5'>
                             {product.sku}
                         </div>
 
@@ -36,6 +36,7 @@ export default function ProductSlider() {
                             }}
                             breakpoints={{
                                 768: {
+                                    direction: 'vertical',
                                     navigation: false,
                                 },
                             }}
@@ -86,11 +87,11 @@ export default function ProductSlider() {
                             modules={[FreeMode, Navigation, Thumbs]}
                             className='mt-20 w-full !px-12 md:!px-0 md:ml-[-1px] md:!absolute md:!bottom-0'
                         >
-                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 md:rounded-[8px] overflow-hidden'>
+                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 hover:opacity-100 transition-opacity duration-300'>
                                 <Image width={122} className=" h-56  w-93 max-w-93 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
 
                             </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 md:rounded-[8px] overflow-hidden'>
+                            <SwiperSlide className=' h-56 w-93 max-w-93 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 hover:opacity-100 transition-opacity duration-300'>
                                 <Image width={122} className=" h-56 w-93 max-w-93 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
                             </SwiperSlide>
                         </Swiper>
