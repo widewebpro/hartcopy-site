@@ -3,6 +3,7 @@ import Navigation from './Navigation'
 import Logo from './Logo'
 import { useState, useEffect } from 'react';
 import BackButton from './BackButton';
+import AnimatedCard from './AnimatedCard';
 export default function Header() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function Header() {
   }, [open]);
   return (
     <header className="navigation bg-light-white rounded-[0.5rem]">
-      <div>
+      <AnimatedCard>
         <div className="md:mb-24 relative z-20 bg-light-white rounded-[0.5rem] md:bg-[unset] md:static px-20 md:px-0 pt-22 pb-21 md:py-0 flex items-center justify-between">
           <Logo />
           <button
@@ -53,7 +54,7 @@ export default function Header() {
             </div>
           </div>
       
-      </div>
+      </AnimatedCard>
     </header>
   )
 }

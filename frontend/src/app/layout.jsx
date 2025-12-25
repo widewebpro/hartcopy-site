@@ -4,10 +4,12 @@ import "./globals.css"
 import { SiteDataInitializer } from '@/components/store-inits/SiteDataInitializer'
 import { ProductsInitializer } from '@/components/store-inits/ProductInitializer'
 import { products } from '@/helpers/products'
+
 export const metadata = {
   title: process.env.SITE_NAME,
   description: 'Hartcopy site'
 }
+
 
 export default async function RootLayout({ children }) {
   // const data = await fetchGraphQL(GLOBALS_QUERY, {}, {
@@ -17,11 +19,11 @@ export default async function RootLayout({ children }) {
 
 
   // const globals = data?.globalEntries?.[0] || {
-    
+
   // }
   const globals = {
-  logo: [{ url: '/logo.svg' }],
-};
+    logo: [{ url: '/logo.svg' }],
+  };
   const pages = [
     {
       id: 1,
@@ -46,8 +48,8 @@ export default async function RootLayout({ children }) {
   ]
   const siteName = process.env.SITE_NAME || 'Hartcopy'
   const logo = globals?.logo?.[0] || {
-      url: '/logo.svg'
-    }
+    url: '/logo.svg'
+  }
 
   return (
     <html lang="en">

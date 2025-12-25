@@ -45,7 +45,6 @@ export default function BottomPanel({ page }) {
             document.removeEventListener('keydown', handleEsc);
         };
     }, [isFilterOpen]);
-    console.log(showInput, page)
     return (
         <div className={`flex items-center justify-between h-56 md:h-[unset] md:pb-18 md:pt-19 px-16 md:pl-16 md:pr-25 bg-light-white runded-[0.75rem] md:rounded-[0.5rem] mt-auto fixed md:static bottom-24 left-12 right-12 w-[calc(100%-1.5rem)] md:w-full md:max-w-[67.5rem] ${page == 'product' ? 'md:hidden' : ''}`}>
             <div className={`flex items-center justify-between md:hidden ${showInput ? 'w-full' : ''}`}>

@@ -18,7 +18,7 @@ export default function StoriesPage() {
   }, [router])
 
   return (
-    <div className="container md:flex">
+    <div className="container md:hidden">
       <StoriesInitializer stories={rawStories} />
       
       <div className="md:hidden w-[calc(100%-1.5rem)] fixed top-12 left-12 right-12 z-50">

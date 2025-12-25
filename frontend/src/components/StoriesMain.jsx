@@ -3,6 +3,7 @@
 import { useStoriesStore } from "@/store/useStoriesStore";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import AnimatedCard from "./AnimatedCard";
 export default function StoriesMain({ slug }) {
 
     const activeStory = useStoriesStore(state =>
@@ -18,6 +19,7 @@ export default function StoriesMain({ slug }) {
         })
     }, [activeStory])
     return (
+       <AnimatedCard>
         <div className="w-full md:flex md:flex-col md:ml-8 md:max-h-[calc(100vh-3rem)] md:h-screen md:overflow-hidden">
             <div ref={containerRef} className='h-full md:flex-1 md:overflow-y-scroll pt-71 md:pt-0'>
                 {activeStory &&
@@ -72,7 +74,7 @@ export default function StoriesMain({ slug }) {
                 }
             </div>
         </div>
-
+</AnimatedCard> 
     )
 }
 

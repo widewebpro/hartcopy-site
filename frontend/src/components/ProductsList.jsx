@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import smoothScrollContainer from "@/helpers/scrollTo";
 import Link from "next/link";
 import { normalizePath } from "@/helpers/normalizePath";
-
+import AnimatedCard from "./AnimatedCard";
 export default function ProductsList() {
     const pathname = usePathname();
     const isBookmarksPage = normalizePath(pathname) === "/bookmarks";
@@ -68,10 +68,10 @@ export default function ProductsList() {
                             onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}
                         >
                             <Link href={`/products/${p.slug}`}>
-                                <div className="flex">
+                                <AnimatedCard className="flex">
                                     <span className="w-29">{i + 1}</span>
                                     <span>{p.name}</span>
-                                </div>
+                                </AnimatedCard>
                             </Link>
 
                         </li>
