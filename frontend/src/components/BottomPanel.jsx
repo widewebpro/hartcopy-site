@@ -45,8 +45,21 @@ export default function BottomPanel({ page }) {
             document.removeEventListener('keydown', handleEsc);
         };
     }, [isFilterOpen]);
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        if (page !== 'product') return
+
+        const onScroll = () => {
+        const vh = window.innerHeight
+        setShow(window.scrollY >= vh)
+        }
+
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [page])
     return (
-        <div className={`flex items-center justify-between h-56 md:h-[unset] md:pb-18 md:pt-19 px-16 md:pl-16 md:pr-25 bg-light-white rounded-[0.75rem] md:rounded-[0.5rem] mt-auto fixed md:static bottom-24 left-12 right-12 w-[calc(100%-1.5rem)] md:w-full md:max-w-[67.5rem] ${page == 'product' ? 'md:hidden' : ''}`}>
+        <div className={`flex items-center justify-between h-56 md:h-[unset] md:pb-18 md:pt-19 px-16 md:pl-16 md:pr-25 bg-light-white rounded-[0.75rem] md:rounded-[0.5rem] shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:shadow-none mt-auto fixed md:static bottom-24 left-12 right-12 w-[calc(100%-1.5rem)] md:w-full md:max-w-[67.5rem] transition-all duration-300 ${page == 'product' ? show ? 'opacity-100 translate-y-0 md:hidden' : 'opacity-0 translate-y-6 pointer-events-none md:hidden' : ''}`}>
             <div className={`flex items-center justify-between md:hidden ${showInput ? 'w-full' : ''}`}>
                 <button onClick={() => setShowInput(!showInput)} className="text-[0.625rem] uppercase mr-25">
                     Find

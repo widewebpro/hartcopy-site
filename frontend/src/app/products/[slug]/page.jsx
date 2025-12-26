@@ -11,7 +11,7 @@ export default async function ProductPage({ params }) {
 
   if (!product) return <div>Not Found</div>;
     return (
-        <div className="container md:flex !mb-24 !md:mb-0">
+        <div className="container md:flex !mb-24 md:!mb-0">
             <ProductPageWrap product={product} /> 
             <BottomPanel page='product' />
       

@@ -75,19 +75,19 @@ export default function ProductDescription() {
                         </p>
                     </div>
                     <div className="mt-20 md:mt-24">
-                        <p className="text-[0.5rem] mb-20">
+                        <p className="text-[0.5rem] mb-20 text-primary">
                             SIMILAR PRODUCTS
                         </p>
                         <div className="flex justify-between flex-wrap">
-                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset] opacity-25 hover:opacity-100 transition-opacity duration-300" href={`/products/${product.slug}`}>
+                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
                                 <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
                                 
                             </Link>
-                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset] opacity-25 hover:opacity-100 transition-opacity duration-300" href={`/products/${product.slug}`}>
+                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
                                 <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
 
                             </Link>
-                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset] opacity-25 hover:opacity-100 transition-opacity duration-300" href={`/products/${product.slug}`}>
+                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
                                 <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
 
                             </Link>
