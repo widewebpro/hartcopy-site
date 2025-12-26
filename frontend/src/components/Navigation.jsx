@@ -12,12 +12,16 @@ export default function Navigation() {
     pathname === '/' ? '/' : pathname.replace(/\/$/, '')
 
   const isActiveOrChild = (page) => {
-    const pagePath = `/${page.uri}`
+    const pagePath = `${page.url}`
+    if (pagePath === '/') {
+      return normalizedPathname === '/';
+    }
     return (
       normalizedPathname === pagePath ||
-      normalizedPathname.startsWith(`${pagePath}/`)
+      normalizedPathname.startsWith(`${pagePath}`)
     )
   }
+  console.log(normalizedPathname)
 
   const renderPageLinks = (pages) => {
     return pages.map(page => {
@@ -29,7 +33,7 @@ export default function Navigation() {
             href={`${page.url}`}
             role="menuitem"
             tabIndex={0}
-            className={`text-[1.25rem] md:text-[0.5rem] outline-none hover:text-red uppercase transition-color duration-300 ${normalizedPathname === page.url
+            className={`text-[1.25rem] md:text-[0.5rem] outline-none hover:text-red uppercase transition-color duration-300 ${isActiveOrChild(page)
                 ? 'text-red italic'
                 : 'text-black'
               }`}
