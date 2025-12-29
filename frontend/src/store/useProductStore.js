@@ -29,7 +29,10 @@ export const useProductsStore = create((set, get) => ({
   hoveredListIndex: null,
   selectedProduct: null,
   lastOpenedProduct: null,
-
+  isSearchOpen: false,
+  
+  openSearch: () => set({ isSearchOpen: true }),
+  closeSearch: () => set({ isSearchOpen: false }),
 
   setSelectedProduct: (product) => set({ selectedProduct: product }),
 

@@ -14,6 +14,8 @@ export default function ProductsList() {
     const searchTerm = useProductsStore((state) => state.searchTerm)
     const products = useProductsStore((state) => state.products)
     const resetHoverState = useProductsStore(state => state.resetHoverState)
+    const isSearchOpen = useProductsStore((state) => state.isSearchOpen)
+    const closeSearch = useProductsStore((state) => state.closeSearch)
 
     const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover, hoveredIndexGrid,setLastOpenedProduct, lastOpenedProduct } = useProductsStore();
     const refs = useRef([]);
@@ -22,6 +24,7 @@ export default function ProductsList() {
     const getFilteredProducts = useProductsStore(
         (state) => state.getFilteredProducts
     )
+
     useEffect(() => {
         if (hoveredIndexGrid !== null) {
             const target = refs.current[hoveredIndexGrid]
@@ -38,7 +41,7 @@ export default function ProductsList() {
     }, [hoveredIndexGrid])
 
     useEffect(() => {
-        if (lastOpenedProduct !== null) {
+        if (lastOpenedProduct !== null && window.innerWidth > 768) {
             const target = refs.current[lastOpenedProduct]
             const container = containerRef.current
 
@@ -73,8 +76,24 @@ export default function ProductsList() {
      useEffect(() => {
         resetHoverState()
     }, [pathname])
+    useEffect(() => {
+        if (!isSearchOpen) return
+    
+        const handleClickOutside = (e) => {
+            console.log(e)
+          if (
+            containerRef.current &&
+            !e.target.closest('.sidebar') && !e.target.closest('.bottom-pannel') && !e.target.closest('.product__product-list') 
+          ) {
+            closeSearch()
+          }
+        }
+    
+        document.addEventListener("pointerdown", handleClickOutside)
+        return () => document.removeEventListener("pointerdown", handleClickOutside)
+      }, [isSearchOpen, closeSearch])
     return (
-        <ul ref={containerRef} className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
+        <ul ref={containerRef} className="flex-1 relative overflow-y-scroll mb-4 mt-32 pb-25">            
             {filteredProducts.length > 0 ? (
                 filteredProducts.map((p, i) => {
                     const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
@@ -88,7 +107,7 @@ export default function ProductsList() {
                             onMouseEnter={() => { setHoveredIndex(i), setHoverWithDelay("list", i) }}
                             onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}
                         >
-                            <Link href={`/products/${p.slug}`} onClick={() => setLastOpenedProduct(i)}>
+                            <Link href={`/products/${p.slug}`} onClick={() => {setLastOpenedProduct(i), closeSearch() }}>
                                 <AnimatedCard className="flex">
                                     <span className="w-29">{i + 1}</span>
                                     <span>{p.name}</span>

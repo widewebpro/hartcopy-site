@@ -1,8 +1,9 @@
 'use client'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs, Mousewheel } from 'swiper/modules';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductDescription from './ProductDescription';
+import ProductsList from './ProductsList';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -13,7 +14,19 @@ import Image from 'next/image';
 export default function ProductSlider() {
     const product = useProductsStore((state) => state.selectedProduct);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+    const isSearchOpen = useProductsStore((state) => state.isSearchOpen)
+    const closeSearch = useProductsStore((state) => state.closeSearch)
+     useEffect(() => {
+        if (isSearchOpen) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+    
+        return () => {
+          document.body.style.overflow = '';
+        };
+      }, [isSearchOpen]);
     return (
         <div className='md:h-full pt-37 md:pt-0 relative md:pl-16'>
             {product &&
@@ -122,6 +135,15 @@ export default function ProductSlider() {
                     <div>
                         <ProductDescription />
                     </div>
+
+                    {isSearchOpen && 
+                        <div className='fixed block md:hidden product__product-list top-48 left-0 right-0 w-full h-full bg-light-grey flex px-20 pt-10 pb-110'>
+                            <div onClick={() => closeSearch()} className='absolute top-40 right-10 text-red'>
+                                x
+                            </div>
+                            <ProductsList/>
+                        </div>
+                    }
                 </>
             }
         </div>
