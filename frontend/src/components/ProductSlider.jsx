@@ -74,66 +74,6 @@ export default function ProductSlider() {
 
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
-                                    <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
-
-                                </div>
-                            </SwiperSlide>
                             <button
                                 className="product-prev absolute w-24 h-22 left-24 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 aria-label="Previous slide"
@@ -164,39 +104,6 @@ export default function ProductSlider() {
                             <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
                                 <Image width={122} className=" h-56  w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
 
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
-                            </SwiperSlide>
-                            <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
-                                <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
                             </SwiperSlide>
                             <SwiperSlide className=' h-56 w-70 max-w-70 max-h-56 cursor-pointer md:w-122 md:h-122 bg-light-white md:max-w-122 md:pt-17 md:pb-9 md:max-h-122 rounded-[5px] md:rounded-[8px] overflow-hidden opacity-25 md:opacity-100 hover:opacity-100 transition-opacity duration-300'>
                                 <Image width={122} className=" h-56 w-70 max-w-70 max-h-56 md:w-full md:h-96 md:max-w-full md:max-h-96 object-contain md:mx-auto" height={122} alt={product.name} src={product.image} />
