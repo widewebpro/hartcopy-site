@@ -15,7 +15,7 @@ export default function ProductSlider() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
-        <div className='md:h-full pt-37 md:pt-0 relative md:pl-12'>
+        <div className='md:h-full pt-37 md:pt-0 relative md:pl-16'>
             {product &&
                 <>
                     <div className='md:h-full mx-[-0.75rem] md:mx-0 flex flex-col justify-start items-stretch w-[calc(100%+24px)] md:w-full md:pt-10 mb-5 md:mb-0 sticky top-80 md:static'>
