@@ -21,7 +21,6 @@ export default function Navigation() {
       normalizedPathname.startsWith(`${pagePath}`)
     )
   }
-  console.log(normalizedPathname)
 
   const renderPageLinks = (pages) => {
     return pages.map(page => {

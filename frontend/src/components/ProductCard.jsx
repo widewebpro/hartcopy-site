@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 export default function ProductCard({ product, index }) {
   const [mounted, setMounted] = useState(false);
   const [loaded, setLoaded] = useState(false);
-      const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover } = useProductsStore();
+      const { hoveredIndex } = useProductsStore();
 
   useEffect(() => {
     setMounted(true);
@@ -25,8 +25,7 @@ export default function ProductCard({ product, index }) {
     <div className={`product-card relative aspect-square transition-opacity duration-500 ${
         isDimmed ? "md:opacity-25" : "md:opacity-100"
       }`}
-      onMouseEnter={() => {setHoveredIndex(index); setHoverWithDelay("grid", index)}}
-      onMouseLeave={() => {setHoveredIndex(null); clearHover("grid")}}>
+      >
       {product.new &&
         <div className='w-27 uppercase md:normal-case md:w-25 absolute top-4 right-9 h-14  text-[0.5rem] flex items-center justify-center text-light-white rounded-[0.188rem] bg-red'>
           New

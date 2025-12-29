@@ -28,6 +28,8 @@ export const useProductsStore = create((set, get) => ({
   hoveredGridIndex: null,
   hoveredListIndex: null,
   selectedProduct: null,
+  lastOpenedProduct: null,
+
 
   setSelectedProduct: (product) => set({ selectedProduct: product }),
 
@@ -67,12 +69,27 @@ export const useProductsStore = create((set, get) => ({
     }, 800);
   },
 
+  setLastOpenedProduct: (i) => set({ lastOpenedProduct: i }),
+
   clearHover: (source) => {
     clearTimeout(hoverTimeout);
 
     if (source === "grid") set({ hoveredIndexGrid: null });
     if (source === "list") set({ hoveredIndexList: null });
   },
+  resetHoverState: () =>
+    set((state) => {
+        if (state.hoverTimeout) {
+            clearTimeout(state.hoverTimeout)
+        }
+
+        return {
+            hoveredIndex: null,
+            hoveredIndexGrid: null,
+            hoveredIndexList: null,
+            hoverTimeout: null,
+        }
+    }),
   getFilteredProducts: () => {
     const { products, searchTerm, favorites } = get();
 

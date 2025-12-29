@@ -4,14 +4,20 @@ import { useProductsStore } from "@/store/useProductStore"
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/helpers/formatDate";
+import { useEffect } from "react";
 export default function ProductDescription() {
     const product = useProductsStore((state) => state.selectedProduct);
     const favorites = useProductsStore(s => s.favorites);
+    const resetHoverState = useProductsStore(state => state.resetHoverState)
 
     const toggleFavorite = useProductsStore(s => s.toggleFavorite);
     const isFavorite = product
         ? favorites.includes(product.id)
         : false;
+
+    useEffect(() => {
+            resetHoverState()
+    }, [])
     return (
         <div className="md:flex flex-1 flex-col min-h-0 p-20 md:py-0 md:pl-0 md:pr-8 bg-light-white rounded-[12px] md:rounded-[8px] sticky top-61 md:static" >
 

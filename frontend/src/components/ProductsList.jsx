@@ -13,7 +13,9 @@ export default function ProductsList() {
 
     const searchTerm = useProductsStore((state) => state.searchTerm)
     const products = useProductsStore((state) => state.products)
-    const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover, hoveredIndexGrid } = useProductsStore();
+    const resetHoverState = useProductsStore(state => state.resetHoverState)
+
+    const { hoveredIndex, setHoveredIndex, setHoverWithDelay, clearHover, hoveredIndexGrid,setLastOpenedProduct, lastOpenedProduct } = useProductsStore();
     const refs = useRef([]);
     const containerRef = useRef(null)
 
@@ -35,6 +37,21 @@ export default function ProductsList() {
         }
     }, [hoveredIndexGrid])
 
+    useEffect(() => {
+        if (lastOpenedProduct !== null) {
+            const target = refs.current[lastOpenedProduct]
+            const container = containerRef.current
+
+            if (target && container) {
+                smoothScrollContainer({
+                    container,
+                    target,
+                    duration: 1200,
+                })
+            }
+        }
+    }, [lastOpenedProduct])
+
     const baseProducts = isBookmarksPage
         ? products.filter(p => favorites.includes(p.id))
         : products;
@@ -52,6 +69,10 @@ export default function ProductsList() {
                 field.toString().toLowerCase().includes(query)
             )
     })
+
+     useEffect(() => {
+        resetHoverState()
+    }, [pathname])
     return (
         <ul ref={containerRef} className="flex-1 overflow-y-scroll mb-4 mt-32 pb-25">
             {filteredProducts.length > 0 ? (
@@ -67,7 +88,7 @@ export default function ProductsList() {
                             onMouseEnter={() => { setHoveredIndex(i), setHoverWithDelay("list", i) }}
                             onMouseLeave={() => { setHoveredIndex(null), clearHover("list") }}
                         >
-                            <Link href={`/products/${p.slug}`}>
+                            <Link href={`/products/${p.slug}`} onClick={() => setLastOpenedProduct(i)}>
                                 <AnimatedCard className="flex">
                                     <span className="w-29">{i + 1}</span>
                                     <span>{p.name}</span>
