@@ -200,7 +200,9 @@ export default function BottomPanel({ page }) {
                         </button>
                     </div>
                 </>}
-
+            <div className="h-80 absolute w-[calc(100%+1.5rem)] left-[-0.75rem] bottom-[-1.5rem] bg-gradient-to-t from-[#fffffa] to-transparent md:hidden">
+                
+            </div>                
         </div>
     )
 }
