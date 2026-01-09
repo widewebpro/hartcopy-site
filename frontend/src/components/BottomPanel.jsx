@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react"
 import InputComponent from "./InputComponent"
 
 export default function BottomPanel({ page }) {
-    const { randomizeProducts, sortProductsByAlphabet, sortProductsByDate, activeSort, resetSort } = useProductsStore()
+    const { randomizeProducts, sortProductsByAlphabet, sortProductsByDate, activeSort, resetSort, openSearch } = useProductsStore()
     const searchTerm = useProductsStore((state) => state.searchTerm)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
 
@@ -17,8 +17,9 @@ export default function BottomPanel({ page }) {
     const handleSort = (sort) => {
         if (activeSort === sort) {
             resetSort()
-            console.log('h23')
-            setIsFilterOpen(false)
+            if (!thisIsMobile) {
+                setIsFilterOpen(false)
+            }
             return
         }
 
@@ -27,8 +28,10 @@ export default function BottomPanel({ page }) {
         } else {
             sortProductsByDate(sort)
         }
+        if (!thisIsMobile) {
+            setIsFilterOpen(false)
+        }
 
-        setIsFilterOpen(false)
     }
     useEffect(() => {
         setThisIsMobile(window.innerWidth <= 769)
@@ -76,18 +79,28 @@ export default function BottomPanel({ page }) {
     }, [page])
     return (
         <div className={`flex items-center bottom-pannel justify-between h-56 md:h-[unset] md:pb-18 md:pt-19 px-16 md:pl-16 md:pr-25 bg-light-white rounded-[0.75rem] md:rounded-[0.5rem] shadow-[0_2px_8px_rgba(0,0,0,0.06)] md:shadow-none mt-auto fixed md:static bottom-24 left-12 right-12 w-[calc(100%-1.5rem)] md:w-full md:max-w-[calc(100%-4px)] transition-all duration-300 ${page == 'product' ? show ? 'opacity-100 translate-y-0 md:hidden' : 'opacity-0 translate-y-6 pointer-events-none md:hidden' : ''}`}>
-            <div className={`flex items-center justify-between md:hidden ${showInput ? 'w-full' : ''}`}>
-                <button onClick={() => setShowInput(!showInput)} className="text-[0.625rem] uppercase mr-25">
-                    Find
-                </button>
-                {showInput && <InputComponent page={page} />}
-            </div>
+            {!isFilterOpen &&
+                <div className={`flex items-center justify-between md:hidden ${showInput ? 'w-full' : ''}`}>
+                    <button onClick={() => {setShowInput(true); openSearch()}} className={`text-[0.625rem] uppercase mr-25 ${showInput ? 'text-red italic' : ''}`}>
+                        Find
+                    </button>
+                    {showInput && <><InputComponent page={page} />
+                        <svg onClick={() => setShowInput(false)} className="md:hidden ml-14" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.4142 11.4142L6.41418 6.41422M6.41418 6.41422L1.41418 1.41422M6.41418 6.41422L11.4142 1.41422M6.41418 6.41422L1.41418 11.4142" stroke="black" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
+                        </svg>
+                    </>}
+
+
+                </div>
+            }
+
             {!showInput && page !== 'stories' &&
 
                 <>
                     {
-                        page !== 'bookmarks' && page !== 'product' &&
-                        <div className="flex items-center">
+                        page !== 'bookmarks' && page !== 'product' && !showInput &&
+                        <div className={`items-center ${isFilterOpen ? 'hidden md:flex' : 'flex'
+                            }`}>
                             <span className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] hidden md:block uppercase mr-17">Zoom</span>
                             <button
                                 onClick={increase}
@@ -114,56 +127,48 @@ export default function BottomPanel({ page }) {
                         </div>
                     }
 
-                    <div className="flex">
-                        <div className="md:mr-48 relative flex"
+                    <div className={`flex  ${isFilterOpen ? 'w-full md:w-auto' : '' }`}>
+                        <div className="w-full md:w-auto md:mr-48 relative flex"
                             ref={filterRef}>
                             <button
-                                onClick={() => setIsFilterOpen(v => !v)}
-                                className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red hover:italic transition-color duration-300"
+                                onClick={() => {setIsFilterOpen(true); openSearch()}}
+                                className={`text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red hover:italic transition-color duration-300 ${isFilterOpen ? 'hidden md:block' : ''}`}
                             >
                                 Filter
                             </button>
                             {isFilterOpen && (
-                                <div className="absolute right-0 md:left-0 bottom-full mt-8 bg-light-white rounded-[0.5rem] overflow-hidden shadow-md z-50 w-[6.25rem]">
+                                <div className=" flex items-center justify-between overflow-hidden  w-full ">
+                                    <div
+                                        className={`block w-full md:hidden text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase text-red italic`}
+                                    >
+                                        Filter
+                                    </div>
                                     <button
                                         onClick={() => handleSort('az')}
-                                        className={`block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100`}
+                                        className={`block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red`}
                                     >
                                         <span className="relative">A–Z
-                                            {activeSort === 'az' && 
-                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
-                                            </svg>
+                                            {activeSort === 'az' &&
+                                                <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                                </svg>
                                             }
-                                            
+
                                         </span>
 
 
                                     </button>
 
-                                    <button
-                                        onClick={() => handleSort('za')}
-                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
-                                    >
-                                        <span className="relative">
-                                            Z–A
-                                            {activeSort === 'za' && 
-                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
-                                            </svg>
-                                            }
-                                        </span>
-                                    </button>
                                     <button
                                         onClick={() => handleSort('newest')}
-                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
+                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red"
                                     >
                                         <span className="relative">
                                             Newest
-                                            {activeSort === 'newest' && 
-                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
-                                            </svg>
+                                            {activeSort === 'newest' &&
+                                                <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                                </svg>
                                             }
                                         </span>
                                     </button>
@@ -171,25 +176,32 @@ export default function BottomPanel({ page }) {
                                     <button
                                         onClick={() => handleSort('oldest')}
 
-                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
+                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red"
                                     >
                                         <span className="relative">
                                             Oldest
-                                           {activeSort === 'oldest' && 
-                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
-                                            </svg>
+                                            {activeSort === 'oldest' &&
+                                                <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                                </svg>
                                             }
                                         </span>
 
                                     </button>
+
+                                    <div onClick={() => setIsFilterOpen(false)} className="flex-shrink-0 px-12 cursor-pointer ">
+                                        <svg width="13" height="13" className="md:w-8 md:h-8" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.4142 11.4142L6.41418 6.41422M6.41418 6.41422L1.41418 1.41422M6.41418 6.41422L11.4142 1.41422M6.41418 6.41422L1.41418 11.4142" stroke="black" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+
                                 </div>
                             )}
                         </div>
 
                         <button
                             onClick={randomizeProducts}
-                            className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] hidden md:block uppercase hover:text-red transition-color duration-300"
+                            className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] hidden md:block uppercase hover:text-red hover:italic transition-color duration-300"
                         >
                             Random
                         </button>
