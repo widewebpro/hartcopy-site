@@ -49,7 +49,7 @@ export default function StoriesList() {
             {filteredStories.length > 0 ? (
                 filteredStories.map((p, i) => {
                     const isSelected = getActiveStory().slug === p.slug
-                    const opacityClass = isSelected ? '' : 'opacity-25'
+                    const opacityClass = isSelected ? '' : 'md:opacity-25'
                     return (
                         <li
                             key={i}

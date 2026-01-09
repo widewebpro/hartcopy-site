@@ -57,51 +57,51 @@ export default function ProductSlider() {
                         >
 
                             <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
+                                <div className="w-full h-full flex justify-center items-center px-24 md:px-0">
 
                                     <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
+                                <div className="w-full h-full flex justify-center items-center px-24 md:px-0">
                                     <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
+                                <div className="w-full h-full flex justify-center items-center px-24 md:px-0">
                                     <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
+                                <div className="w-full h-full flex justify-center items-center px-24 md:px-0">
                                     <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                <div className="w-full h-full flex justify-center items-center">
+                                <div className="w-full h-full flex justify-center items-center px-24 md:px-0">
                                     <Image width={600} className="max-w-full max-h-full object-contain md:w-full" height={600} alt={product.name} src={product.image} />
 
                                 </div>
                             </SwiperSlide>
                             <button
-                                className="product-prev absolute w-24 h-22 left-24 top-1/2 -translate-y-1/2 z-10 md:hidden"
+                                className="product-prev absolute w-12 h-1 left-12 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 aria-label="Previous slide"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className='w-24 h-22' width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" className='w-12 h-11' width="12" height="11" viewBox="0 0 12 11" fill="none">
                                     <path d="M11 4.41421H12V6.41421H11V5.41421V4.41421ZM1 5.41421L0.292893 6.12132C-0.0976311 5.7308 -0.0976311 5.09763 0.292893 4.70711L1 5.41421ZM4.29289 0.707107L5 9.50061e-08L6.41421 1.41421L5.70711 2.12132L5 1.41421L4.29289 0.707107ZM5.70711 8.70711L6.41421 9.41421L5 10.8284L4.29289 10.1213L5 9.41421L5.70711 8.70711ZM3.79289 1.20711C4.18342 0.816583 4.81658 0.816583 5.20711 1.20711C5.59763 1.59763 5.59763 2.2308 5.20711 2.62132L4.5 1.91421L3.79289 1.20711ZM5.20711 8.20711C5.59763 8.59763 5.59763 9.2308 5.20711 9.62132C4.81658 10.0118 4.18342 10.0118 3.79289 9.62132L4.5 8.91421L5.20711 8.20711ZM11 5.41421V6.41421H1V5.41421V4.41421H11V5.41421ZM1 5.41421L0.292893 4.70711L4.29289 0.707107L5 1.41421L5.70711 2.12132L1.70711 6.12132L1 5.41421ZM1 5.41421L1.70711 4.70711L5.70711 8.70711L5 9.41421L4.29289 10.1213L0.292893 6.12132L1 5.41421ZM1 5.41421L0.292893 4.70711L3.79289 1.20711L4.5 1.91421L5.20711 2.62132L1.70711 6.12132L1 5.41421ZM1 5.41421L1.70711 4.70711L5.20711 8.20711L4.5 8.91421L3.79289 9.62132L0.292893 6.12132L1 5.41421Z" fill="black" />
                                 </svg>
 
                             </button>
 
                             <button
-                                className="product-next absolute w-24 h-22  right-24 top-1/2 -translate-y-1/2 z-10 md:hidden"
+                                className="product-next absolute w-12 h-11  right-12 top-1/2 -translate-y-1/2 z-10 md:hidden"
                                 aria-label="Next slide"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className='w-24 h-22' width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" className='w-12 h-11' width="12" height="11" viewBox="0 0 12 11" fill="none">
                                     <path d="M1 4.41421H0V6.41421H1V5.41421V4.41421ZM11 5.41421L11.7071 6.12132C12.0976 5.7308 12.0976 5.09763 11.7071 4.70711L11 5.41421ZM7.70711 0.707107L7 9.50061e-08L5.58579 1.41421L6.29289 2.12132L7 1.41421L7.70711 0.707107ZM6.29289 8.70711L5.58579 9.41421L7 10.8284L7.70711 10.1213L7 9.41421L6.29289 8.70711ZM8.20711 1.20711C7.81658 0.816583 7.18342 0.816583 6.79289 1.20711C6.40237 1.59763 6.40237 2.2308 6.79289 2.62132L7.5 1.91421L8.20711 1.20711ZM6.79289 8.20711C6.40237 8.59763 6.40237 9.2308 6.79289 9.62132C7.18342 10.0118 7.81658 10.0118 8.20711 9.62132L7.5 8.91421L6.79289 8.20711ZM1 5.41421V6.41421H11V5.41421V4.41421H1V5.41421ZM11 5.41421L11.7071 4.70711L7.70711 0.707107L7 1.41421L6.29289 2.12132L10.2929 6.12132L11 5.41421ZM11 5.41421L10.2929 4.70711L6.29289 8.70711L7 9.41421L7.70711 10.1213L11.7071 6.12132L11 5.41421ZM11 5.41421L11.7071 4.70711L8.20711 1.20711L7.5 1.91421L6.79289 2.62132L10.2929 6.12132L11 5.41421ZM11 5.41421L10.2929 4.70711L6.79289 8.20711L7.5 8.91421L8.20711 9.62132L11.7071 6.12132L11 5.41421Z" fill="black" />
                                 </svg>
 

@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react"
 import InputComponent from "./InputComponent"
 
 export default function BottomPanel({ page }) {
-    const { randomizeProducts, sortProductsByAlphabet } = useProductsStore()
+    const { randomizeProducts, sortProductsByAlphabet, sortProductsByDate, activeSort, resetSort } = useProductsStore()
     const searchTerm = useProductsStore((state) => state.searchTerm)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
 
@@ -14,6 +14,22 @@ export default function BottomPanel({ page }) {
     const filterRef = useRef(null);
     const [thisIsMobile, setThisIsMobile] = useState(false)
 
+    const handleSort = (sort) => {
+        if (activeSort === sort) {
+            resetSort()
+            console.log('h23')
+            setIsFilterOpen(false)
+            return
+        }
+
+        if (sort === 'az' || sort === 'za') {
+            sortProductsByAlphabet(sort)
+        } else {
+            sortProductsByDate(sort)
+        }
+
+        setIsFilterOpen(false)
+    }
     useEffect(() => {
         setThisIsMobile(window.innerWidth <= 769)
     }, [])
@@ -51,8 +67,8 @@ export default function BottomPanel({ page }) {
         if (page !== 'product') return
 
         const onScroll = () => {
-        const vh = window.innerHeight
-        setShow(window.scrollY >= vh)
+            const vh = window.innerHeight
+            setShow(window.scrollY >= vh)
         }
 
         window.addEventListener('scroll', onScroll)
@@ -66,7 +82,7 @@ export default function BottomPanel({ page }) {
                 </button>
                 {showInput && <InputComponent page={page} />}
             </div>
-            {!showInput && page !== 'stories'  &&
+            {!showInput && page !== 'stories' &&
 
                 <>
                     {
@@ -75,20 +91,20 @@ export default function BottomPanel({ page }) {
                             <span className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] hidden md:block uppercase mr-17">Zoom</span>
                             <button
                                 onClick={increase}
-                                className="flex items-center text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300 justify-center mr-48 md:mr-27 w-18 h-18 md:w-8 md:h-8"
+                                className="flex items-center text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300 justify-center mr-48 md:mr-27 w-18 h-18 md:w-12 md:h-12 disabled:text-grey"
                                 disabled={cols === options[options.length - 1]}
                             >
-                                <svg width="5" height="1" viewBox="0 0 5 1" className="w-8 h-2 md:w-[unset] md:h-[unset]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="5" height="1" viewBox="0 0 5 1" className="w-8 h-2 md:w-12 md:h-3" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.5 0.5H4.5" stroke="currentColor" strokeLinecap="square" strokeLinejoin="round" />
                                 </svg>
 
                             </button>
                             <button
                                 onClick={decrease}
-                                className="flex items-center justify-center  w-18 h-18 md:w-8 md:h-8 text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300"
+                                className="flex items-center justify-center  w-18 h-18 md:w-12 md:h-12 text-[#000] hover:text-red active:outline active:outline-red transition-color duration-300 disabled:text-grey"
                                 disabled={cols === options[0]}
                             >
-                                <svg width="5" height="5" className="w-8 h-8 md:w-[unset] md:h-[unset]" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="5" height="5" className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.5 2.495H4.5" stroke="currentColor" strokeLinecap="square" strokeLinejoin="round" />
                                     <path d="M2.5 0.5L2.5 4.5" stroke="currentColor" strokeLinecap="square" strokeLinejoin="round" />
                                 </svg>
@@ -103,30 +119,69 @@ export default function BottomPanel({ page }) {
                             ref={filterRef}>
                             <button
                                 onClick={() => setIsFilterOpen(v => !v)}
-                                className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red transition-color duration-300"
+                                className="text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red hover:italic transition-color duration-300"
                             >
                                 Filter
                             </button>
                             {isFilterOpen && (
                                 <div className="absolute right-0 md:left-0 bottom-full mt-8 bg-light-white rounded-[0.5rem] overflow-hidden shadow-md z-50 w-[6.25rem]">
                                     <button
-                                        onClick={() => {
-                                            sortProductsByAlphabet('az')
-                                            setIsFilterOpen(false)
-                                        }}
-                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
+                                        onClick={() => handleSort('az')}
+                                        className={`block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100`}
                                     >
-                                        A–Z
+                                        <span className="relative">A–Z
+                                            {activeSort === 'az' && 
+                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                            </svg>
+                                            }
+                                            
+                                        </span>
+
+
                                     </button>
 
                                     <button
-                                        onClick={() => {
-                                            sortProductsByAlphabet('za')
-                                            setIsFilterOpen(false)
-                                        }}
+                                        onClick={() => handleSort('za')}
                                         className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
                                     >
-                                        Z–A
+                                        <span className="relative">
+                                            Z–A
+                                            {activeSort === 'za' && 
+                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                            </svg>
+                                            }
+                                        </span>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSort('newest')}
+                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
+                                    >
+                                        <span className="relative">
+                                            Newest
+                                            {activeSort === 'newest' && 
+                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                            </svg>
+                                            }
+                                        </span>
+                                    </button>
+
+                                    <button
+                                        onClick={() => handleSort('oldest')}
+
+                                        className="block w-full text-left px-12 py-8 text-[0.625rem] uppercase hover:bg-gray-100"
+                                    >
+                                        <span className="relative">
+                                            Oldest
+                                           {activeSort === 'oldest' && 
+                                            <svg width="20" className="absolute left-[50%] transform translate-x-[-50%] bottom-[-5]" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.2369 4L20 3.20502L17.6888 0.79749L17.6913 0.794979L16.9281 0L16.9257 0.00250913L16.9233 0L16.1603 0.794979L16.1627 0.79749L14.6172 2.40753L13.0716 0.79749L13.074 0.794979L12.3109 0L12.3086 0.00250913L12.3062 0L11.5431 0.794979L11.5455 0.79749L10 2.40753L8.45449 0.79749L8.45678 0.794979L7.69379 0L7.69138 0.00250913L7.68897 0L6.92586 0.794979L6.92827 0.79749L5.38276 2.40753L3.83726 0.79749L3.83967 0.794979L3.07655 0L3.07414 0.00250913L3.07173 0L2.30862 0.794979L2.31103 0.79749L0 3.20502L0.763115 4L3.07414 1.59247L4.61965 3.20251L4.61724 3.20502L5.38035 4L5.38276 3.99749L5.38517 4L6.14829 3.20502L6.14588 3.20251L7.69138 1.59247L9.23688 3.20251L9.23448 3.20502L9.99759 4L10 3.99749L10.0024 4L10.7655 3.20502L10.7631 3.20251L12.3086 1.59247L13.8541 3.20251L13.8517 3.20502L14.6148 4L14.6172 3.99749L14.6196 4L15.3828 3.20502L15.3804 3.20251L16.9257 1.59247L19.2369 4Z" fill="#E62B25" />
+                                            </svg>
+                                            }
+                                        </span>
+
                                     </button>
                                 </div>
                             )}

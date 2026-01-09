@@ -30,7 +30,9 @@ export const useProductsStore = create((set, get) => ({
   selectedProduct: null,
   lastOpenedProduct: null,
   isSearchOpen: false,
-  
+  activeSort: null,
+
+
   openSearch: () => set({ isSearchOpen: true }),
   closeSearch: () => set({ isSearchOpen: false }),
 
@@ -82,16 +84,16 @@ export const useProductsStore = create((set, get) => ({
   },
   resetHoverState: () =>
     set((state) => {
-        if (state.hoverTimeout) {
-            clearTimeout(state.hoverTimeout)
-        }
+      if (state.hoverTimeout) {
+        clearTimeout(state.hoverTimeout)
+      }
 
-        return {
-            hoveredIndex: null,
-            hoveredIndexGrid: null,
-            hoveredIndexList: null,
-            hoverTimeout: null,
-        }
+      return {
+        hoveredIndex: null,
+        hoveredIndexGrid: null,
+        hoveredIndexList: null,
+        hoverTimeout: null,
+      }
     }),
   getFilteredProducts: () => {
     const { products, searchTerm, favorites } = get();
@@ -134,7 +136,55 @@ export const useProductsStore = create((set, get) => ({
       .filter(p => !favorites.includes(p.id))
       .sort(compare);
 
-    set({ products: [...favs, ...others] });
+    set(
+      {
+        products: [...favs, ...others],
+        activeSort: direction
+      });
+  },
+  sortProductsByDate: (direction = 'newest') => {
+    const { products, favorites } = get();
+
+    const compare = (a, b) => {
+      const dateA = new Date(a.dateUpload).getTime();
+      const dateB = new Date(b.dateUpload).getTime();
+
+      return direction === 'newest'
+        ? dateB - dateA
+        : dateA - dateB;
+    };
+
+    const favs = products
+      .filter(p => favorites.includes(p.id))
+      .sort(compare);
+
+    const others = products
+      .filter(p => !favorites.includes(p.id))
+      .sort(compare);
+
+    set(
+      {
+        products: [...favs, ...others],
+        activeSort: direction
+      });
+  },
+  resetSort: () => {
+    const { products, favorites } = get()
+
+    const compareById = (a, b) => a.id - b.id
+
+    const favs = products
+      .filter(p => favorites.includes(p.id))
+      .sort(compareById)
+
+    const others = products
+      .filter(p => !favorites.includes(p.id))
+      .sort(compareById)
+
+    set({
+      products: [...favs, ...others],
+      activeSort: null
+    })
   },
   getVisibleProducts: (options = {}) => {
     const { onlyFavorites = false } = options;

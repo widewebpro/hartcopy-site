@@ -46,7 +46,7 @@ export default function ProductCard({ product, index }) {
           className="w-full h-full object-cover"
         />
       </motion.div>
-      <span className='text-[0.5rem] absolute top-5 left-10'>{index + 1}</span>
+      <span className='text-[0.5rem] absolute top-5 left-10'>{product.id}</span>
     </div>
   );
 }

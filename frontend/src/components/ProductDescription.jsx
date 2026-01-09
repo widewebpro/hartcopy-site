@@ -43,8 +43,12 @@ export default function ProductDescription() {
                     <p className="mt-4 md:mt-12 text-[1.375rem] md:text-[0.875rem] leading-[1.375rem] md:leading-[1.25rem]">
                         {product.name}
                     </p>
-                    <div className="flex-1 mt-30 md:mt-16  overflow-y-scroll min-h-0">
-                        <p className="text-[0.625rem] md:text-[0.5rem] leading-[150%] ">
+                    <div className="flex-1 mt-30 md:mt-16 min-h-0 relative">
+                        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 
+                  bg-gradient-to-t from-[#fffffa] to-transparent" />
+<div className="h-full overflow-y-scroll pr-4">
+                        
+                        <p className="text-[0.625rem] md:text-[0.5rem] leading-[150%] pb-20">
                             {product.description}
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate commodi repellendus provident cupiditate odio. Minus ullam aperiam perspiciatis nisi molestias sequi consectetur assumenda! Odit ipsam deleniti minima. Beatae, debitis aut.
@@ -80,22 +84,20 @@ export default function ProductDescription() {
 
                         </p>
                     </div>
-                    <div className="mt-20 md:mt-24">
+                    </div>
+                    
+                    <div className="mt-20 md:mt-24 mb-25">
                         <p className="text-[0.5rem] mb-20 text-primary">
                             SIMILAR PRODUCTS
                         </p>
                         <div className="flex justify-between flex-wrap">
                             <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
                                 <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
-                                
+                                <p className="text-[0.625rem] md:text-[0.5rem] leading-[150%] text-primary">{product.name}</p>
                             </Link>
                             <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
                                 <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
-
-                            </Link>
-                            <Link className="w-[calc(50%-0.375rem)] md:w-[unset]  transition-opacity duration-300" href={`/products/dr-martens-1460/`}>
-                                <Image width={144} className="w-full md:w-110 aspect-square" alt={product.name} height={144} src={product.image} />
-
+                                <p className="text-[0.625rem] md:text-[0.5rem] leading-[150%] text-primary">{product.name}</p>
                             </Link>
                         </div>
                     </div>
