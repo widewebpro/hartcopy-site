@@ -17,9 +17,6 @@ export default function BottomPanel({ page }) {
     const handleSort = (sort) => {
         if (activeSort === sort) {
             resetSort()
-            if (!thisIsMobile) {
-                setIsFilterOpen(false)
-            }
             return
         }
 
@@ -28,10 +25,6 @@ export default function BottomPanel({ page }) {
         } else {
             sortProductsByDate(sort)
         }
-        if (!thisIsMobile) {
-            setIsFilterOpen(false)
-        }
-
     }
     useEffect(() => {
         setThisIsMobile(window.innerWidth <= 769)
@@ -132,20 +125,20 @@ export default function BottomPanel({ page }) {
                             ref={filterRef}>
                             <button
                                 onClick={() => {setIsFilterOpen(true); openSearch()}}
-                                className={`text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red hover:italic transition-color duration-300 ${isFilterOpen ? 'hidden md:block' : ''}`}
+                                className={`text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red hover:italic transition-color duration-300 ${isFilterOpen ? 'hidden md:block text-red italic' : ''}`}
                             >
                                 Filter
                             </button>
                             {isFilterOpen && (
-                                <div className=" flex items-center justify-between overflow-hidden  w-full ">
+                                <div className=" flex items-center justify-between w-full ">
                                     <div
-                                        className={`block w-full md:hidden text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase text-red italic`}
+                                        className={`block w-full md:hidden text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase text-red italic`}
                                     >
                                         Filter
                                     </div>
                                     <button
                                         onClick={() => handleSort('az')}
-                                        className={`block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red`}
+                                        className={`block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red`}
                                     >
                                         <span className="relative">A–Z
                                             {activeSort === 'az' &&
@@ -161,7 +154,7 @@ export default function BottomPanel({ page }) {
 
                                     <button
                                         onClick={() => handleSort('newest')}
-                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red"
+                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red"
                                     >
                                         <span className="relative">
                                             Newest
@@ -176,7 +169,7 @@ export default function BottomPanel({ page }) {
                                     <button
                                         onClick={() => handleSort('oldest')}
 
-                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.625rem] uppercase hover:text-red"
+                                        className="block w-full text-left px-12 py-8 md:py-0 text-[0.625rem] md:text-[0.5rem] md:leading-[0.625rem] uppercase hover:text-red"
                                     >
                                         <span className="relative">
                                             Oldest

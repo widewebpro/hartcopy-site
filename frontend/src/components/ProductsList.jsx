@@ -109,7 +109,7 @@ export default function ProductsList() {
                         >
                             <Link href={`/products/${p.slug}`} onClick={() => {setLastOpenedProduct(i), closeSearch() }}>
                                 <AnimatedCard className="flex">
-                                    <span className="w-29">{i + 1}</span>
+                                    <span className="w-29">{p.id}</span>
                                     <span>{p.name}</span>
                                 </AnimatedCard>
                             </Link>

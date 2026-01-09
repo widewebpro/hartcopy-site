@@ -28,7 +28,7 @@ export default function ProductGrid() {
     const baseProducts = isBookmarksPage
         ? products.filter(p => favorites.includes(p.id))
         : products;
-     const filteredProducts = baseProducts.filter(p => {
+    const filteredProducts = baseProducts.filter(p => {
         const query = String(searchTerm).toLowerCase()
         return [
             p.name,
@@ -47,11 +47,11 @@ export default function ProductGrid() {
     useEffect(() => {
         setThisIsMobile(window.innerWidth <= 769)
     }, [])
-     useEffect(() => {
+    useEffect(() => {
         if (hoveredIndexList !== null) {
             const target = refs.current[hoveredIndexList]
             const container = containerRef.current
-            
+
             if (target && container) {
                 smoothScrollContainer({
                     container,
@@ -61,38 +61,41 @@ export default function ProductGrid() {
             }
         }
     }, [hoveredIndexList])
-     useEffect(() => {
+    useEffect(() => {
         if (lastOpenedProduct !== null) {
             const target = refs.current[lastOpenedProduct]
             const container = containerRef.current
-            setTimeout(()=>{
+            setTimeout(() => {
                 if (target && container) {
-                smoothScrollContainer({
-                    container,
-                    target,
-                    duration: 1200,
-                })
-            }
+                    smoothScrollContainer({
+                        container,
+                        target,
+                        duration: 1200,
+                    })
+                }
             }, 500)
-            
+
         }
     }, [lastOpenedProduct])
     useEffect(() => {
         resetHoverState()
     }, [pathname])
     return (
-        <div ref={containerRef} className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 md:gap-20 product-grid md:flex-1 md:overflow-y-scroll pb-49 pt-37 md:py-0 md:pl-11`}>
-            {filteredProducts.map((p, i) => (
-                <div key={i} ref={el => (refs.current[i] = el)}>
-                    <Link href={`/products/${p.slug}`} onClick={() => setLastOpenedProduct(i)}
-                    onMouseEnter={() => {setHoveredIndex(i); setHoverWithDelay("grid", i)}}
-                        onMouseLeave={() => {setHoveredIndex(null); clearHover("grid")}}>
+        <div ref={containerRef} className={` product-grid md:flex-1 md:overflow-y-scroll pb-49 pt-37 md:py-0 md:pl-11`}>
+            <div className={`grid ${thisIsMobile ? `grid-cols-${mobCols}` : `grid-cols-${cols}`} gap-6 md:gap-20`}>
+                {filteredProducts.map((p, i) => (
+                    <div className="aspect-square" key={i} ref={el => (refs.current[i] = el)}>
+                        <Link href={`/products/${p.slug}`} onClick={() => setLastOpenedProduct(i)}
+                            onMouseEnter={() => { setHoveredIndex(i); setHoverWithDelay("grid", i) }}
+                            onMouseLeave={() => { setHoveredIndex(null); clearHover("grid") }}>
 
-                        <ProductCard key={i} product={p} index={i} />
-                    </Link>
+                            <ProductCard key={i} product={p} index={i} />
+                        </Link>
 
-                </div>
-            ))}
+                    </div>
+                ))}
+            </div>
+
         </div>
     );
 }
